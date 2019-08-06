@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html id="html_id">
+
+<head>
+    <title>Lie detection test</title>
+    <meta charset="UTF-8">
+    <script src="./js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <script src="./js/jquery.mb.browser.min.js" type="text/javascript"></script>
+    <script src="./js/start.js"></script>
+    <script src="./js/utils.js"></script>
+    <link href="./css/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="div_intro_general" class="intro">
+        <h2 style="text-align:center;"><b>Welcome to this online test!</b></h2>
+        <br>Please make sure you have your browser in fullscreen mode (press F11 for Windows, or Control+Cmd+F for Mac). This test must be completed on <b>Google Chrome</b>. Otherwise it may not work correctly.
+        <br>
+        <br> For more efficient performance, please close the programs (and browser tabs or windows) that you are not currently using.
+        <br>
+        <br>Be advised that using the "refresh" or "back" buttons on the browser during the experiment will send you back on this starting page, and all your progress will be lost.
+        <br>
+        <br>After a valid participation, you will receive a completion password at the end of the experiment.
+        <br>
+        <br>
+        <br>
+        <button class="intro_button" onclick="change_div(this, '#div_intro_consent', detectmob())">Next</button>
+    </div>
+
+
+    <div id="not_chrome_warn" class="intro"></div>
+
+    <div id="div_intro_consent" style="height: 92%" class="intro">
+        Below, you can read the informed consent. If you decide that you want to take part in the experiment, click on AGREED to confirm that you understood and agreed to our conditions.
+        <div id="ic">
+            Dear participant,
+            <br>
+            <br> Here come the rules, etc.
+            <br>
+            <br> You may freely decide to discontinue the experiment at any time without consequences. In that case, all your test data will be erased.
+            <br>
+            <br> Your personal and demographic data will be treated in full confidentiality. The experiment data (response times, etc.) may be shared only completely anonymously in the scientific community.
+            <br>
+            <br> This experimental program has been thoroughly tested and proven stable many times, but we do not take responsibility for potential unexpected technical issues.
+            <br>
+            <br> For further information, you are welcome to contact XXX.
+            <br>
+        </div>
+        <button style="left:20%; top: 90%" class="intro_button" onclick="change_div( this, '#div_intro_dems')">AGREED</button>
+    </div>
+
+
+    <div id="div_intro_dems" style="text-align:left;width: 80%;padding-top: 0%;" class="intro">
+        <br>
+        <b>Please write here your MTurk Contributor ID (number): <input type="text" onkeypress='validate(event)' id="cf_id" class="form_dems" maxlength="16" size="9">
+            <br><br>
+            Please give the following demographic information about yourself.</b>
+        <br>
+        <br> Age:
+        <input type="text" onkeypress='validate(event)' id="age" class="form_dems" maxlength="2" size="4"> &nbsp;&nbsp;&nbsp;&nbsp;Gender:
+        <select id="gender" class="form_dems">
+            <option value="">- choose one -</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+        </select> &nbsp;&nbsp;&nbsp;&nbsp;Highest education:
+        <select id="education" class="form_dems">
+            <option value="">- choose one -</option>
+            <option value="1">Elementary School</option>
+            <option value="2">High School</option>
+            <option value="3">Professional training / vocational program</option>
+            <option value="4">Some college</option>
+            <option value="5">Bachelor's degree</option>
+            <option value="6">Master's degree (or above)</option>
+        </select>
+        <br>
+        <br>Your country of origin:
+        <select id="countries" style="text-transform: capitalize;" class="form_dems">
+            <option value="">-</option>
+        </select>
+        <br>
+        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), vid_start )">Next</button>
+    </div>
+
+    <div id="div_instructions" class="main_instr">
+        <span style="position: relative;left: 42%;transform: translateX(-50%)"><b>Task instructions</b></span>
+        <br>
+        <br>Some instructions here...
+        <br>E.g.:
+        <br><i>
+            <br>First, you will need to watch a video carefully.
+            <br>Note that you cannot fast-forward the video. You can however rewatch parts that you already watched. Also, if you minimize the window or switch to another window, the video will pause.
+            <br>As soon as the video ends, you will be able to move to the next page and answer to some questions regarding the video. (INSERT HERE: what type of questions?)
+            <br>Importantly, please note that there will be some check questions for each video to make sure you watched and understood the content. These questions will be very simple, but if you fail them, the question will be invalidated and
+            replaced (hence the whole test will take longer).
+            <br></i>
+        <br> Click on <b>OK</b> if you understood. You can always check these instructions again during the task.
+        <br>
+        <br>
+        <br>
+        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video');">OK</button>
+    </div>
+
+    <div id="div_video" style="padding:2%; width: 85%; text-align: center;" class="main_instr">
+        <p>Please watch the full video carefully.</p>
+        <br>
+        <div id="vid_container">
+            <video id="vid_id" controls center>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+        <br>
+        <br>
+        <button id="watched_id" class="main_button" onclick="change_div(this, '#div_questions');">Move on to questions</button>
+        <br>
+        <button class="main_button_instr" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>
+    </div>
+
+    <div id="div_questions" style="padding:2%; width: 85%;" class="main_instr">
+        <br>Questions
+        <br>
+        <br>
+        <button class="main_button" onclick="vid_start();">OK</button>
+        <br>
+        <br>
+    </div>
+
+    <div id="div_outro_rating" style="width: 70%;font-size:2.1vw;" class="intro">
+        Outro. Whatever else data you need before submission, e.g. a small questionnaire about how they liked the entire task, to what extent they managed to engage and focus, etc.
+        <br>
+        <br>
+        <br>
+        <button class="intro_button" onclick="change_div(this, '#div_outro_end', true, end_task );" style="font-size:2.5vw;">Submit</button>
+    </div>
+
+    <div id="div_outro_end" style="width: 70%;font-size:2.3vw;" class="intro">
+        <b>End of the experiment</b>
+        <br>
+        <br>Thank you for your participation!
+        <br>
+        <br> Info about this test:
+        <br> XXX
+        <br><b>
+            <br>Your completion password: <span style="color:red" id="passw_display"></span>
+            <br></b>
+        <br>
+        <button class="intro_button" onclick="window.location = end_url;">Exit</button>
+    </div>
+
+</body>
+
+</html>
