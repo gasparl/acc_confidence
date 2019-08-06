@@ -1,58 +1,3 @@
-// video settings
-function vid_listen() {
-    var video = document.getElementById('vid_id');
-    video.addEventListener('timeupdate', function() {
-        if (!video.seeking) {
-            if (video.currentTime > timeTracking.watchedTime) {
-                timeTracking.watchedTime = video.currentTime;
-                lastUpdated = 'watchedTime';
-            } else {
-                //tracking time updated  after user rewinds
-                timeTracking.currentTime = video.currentTime;
-                lastUpdated = 'currentTime';
-            }
-        }
-        if (!document.hasFocus()) {
-            video.pause();
-        }
-    });
-    // prevent user from seeking
-    video.addEventListener('seeking', function() {
-        // guard against infinite recursion:
-        // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
-        var delta = video.currentTime - timeTracking.watchedTime;
-        if (delta > 0) {
-            //play back from where the user started seeking after rewind or without rewind
-            video.currentTime = timeTracking[lastUpdated];
-        }
-    });
-    video.addEventListener("ended", function() {
-        $('#watched_id').css('visibility','visible');
-    });
-}
-
-vidnames = shuffle(vidnames);
-function vid_start() {
-    $('#watched_id').css('visibility','hidden');
-    window.timeTracking = {
-        watchedTime: 0,
-        currentTime: 0
-    };
-    window.lastUpdated = 'currentTime';
-    if (vidnames.length > 0) {
-        document.getElementById("vid_id").src = "vids/" + vidnames.shift() + ".mp4";
-        $('#div_questions').hide();
-        $('#div_video').show();
-    } else {
-        $('#div_questions').hide();
-        $('#div_outro_rating').show();
-    }
-}
-function vid_pause() {
-    document.getElementById('vid_id').pause();
-}
-
-
 // translation
 var tranlate_count = 0;
 function detect_transl() {
@@ -194,8 +139,6 @@ function shuffle(array) {
 function end_task() {
     f_name =
         experiment_title +
-        "_" +
-        condition +
         "_" +
         subj_id +
         ".txt";

@@ -53,7 +53,7 @@
 
     <div id="div_intro_dems" style="text-align:left;width: 80%;padding-top: 0%;" class="intro">
         <br>
-        <b>Please write here your MTurk Contributor ID (number): <input type="text" onkeypress='validate(event)' id="cf_id" class="form_dems" maxlength="16" size="9">
+        <b>Please write here your MTurk Contributor ID (number): <input type="text" onkeypress='validate(event)' id="mturk_id" class="form_dems" maxlength="16" size="9">
             <br><br>
             Please give the following demographic information about yourself.</b>
         <br>
@@ -101,8 +101,10 @@
         <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video');">OK</button>
     </div>
 
-    <div id="div_video" style="padding:2%; width: 85%; text-align: center;" class="main_instr">
-        <p>Please watch the full video carefully.</p>
+    <div id="div_video" style="padding:2%; width: 85%;" class="main_instr">
+        <div id="vid_container" style="text-align: center;">
+            <p>Please watch the full video carefully.</p>
+        </div>
         <br>
         <div id="vid_container">
             <video id="vid_id" controls center>
@@ -111,7 +113,7 @@
         </div>
         <br>
         <br>
-        <button id="watched_id" class="main_button" onclick="change_div(this, '#div_questions');">Move on to questions</button>
+        <button id="watched_id" class="main_button" onclick="change_div(this, '#div_questions', true, vid_close_time);">Move on to questions</button>
         <br>
         <button class="main_button_instr" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>
     </div>
@@ -126,7 +128,7 @@
     </div>
 
     <div id="div_outro_rating" style="width: 70%;font-size:2.1vw;" class="intro">
-        Outro. Whatever else data you need before submission, e.g. a small questionnaire about how they liked the entire task, to what extent they managed to engage and focus, etc.
+        Outro. Whatever else you might need before submission, e.g. a small questionnaire about how they liked the entire task, to what extent they managed to engage and focus, etc.
         <br>
         <br>
         <br>

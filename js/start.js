@@ -3,7 +3,6 @@ var end_url = "https://www.figure-eight.com/";
 var all_conditions = [0, 1, 2, 3];
 var condition;
 var subj_id;
-var response_deadline, teststim;
 var basic_times = {};
 var bg_color = "#031116";
 
