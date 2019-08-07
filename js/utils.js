@@ -168,5 +168,9 @@ function end_task() {
                 $("#passw_display").text("passDemo"); // (resp)
             }
         }
-    );
+    )
+    .fail(function(xhr, status, error) {
+        console.log(error);
+        $('#div_end_error').show();
+    });
 }
