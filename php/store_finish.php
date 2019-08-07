@@ -12,7 +12,7 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) // check ip from share internet
 }
 
 $file_name = ('../results/' . $_POST['filename_post']);
-$subject_results = ($_POST['results_post'] . $subj_ip);
+$subject_results = ($_POST['results_post'] . "/" . $subj_ip . $_POST['date_post']);
 
 file_put_contents($file_name, $subject_results, FILE_APPEND);
 

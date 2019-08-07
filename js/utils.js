@@ -131,6 +131,7 @@ function shuffle(array) {
     }
     return newarr;
 }
+
 // random choice from array
 function rchoice(array) {
     return array[Math.floor(array.length * Math.random())];
@@ -151,7 +152,7 @@ function dl_as_file() {
 }
 
 function copy_to_clip() {
-    element = $('<textarea>').appendTo('body').val(cit_data).select();
+    element = $('<textarea>').appendTo('body').val(subj_data).select();
     document.execCommand("Copy");
     element.remove();
 }
@@ -183,11 +184,12 @@ function end_task() {
             basic_times.consented,
             basic_times.finished,
             duration_full
-        ].join("/") + "\ndate\t" + Date();
+        ].join("/");
     $.post(
         "php/store_finish.php", {
             filename_post: f_name,
-            results_post: subj_data
+            results_post: subj_data,
+            date_post: "\ndate\t" + Date()
         },
         function(resp) {
             $("#passw_display").text(resp);
