@@ -147,12 +147,11 @@ function end_task() {
         basic_times.consented,
         basic_times.finished
     );
-    subj_data +=
-        "load/consent/finish/duration/ip" + [basic_times.loaded,
+    subj_data += dems + [basic_times.loaded,
             basic_times.consented,
             basic_times.finished,
             duration_full
-        ].join("\t");
+        ].join("/");
     $.post(
         "php/store_finish.php", {
             filename_post: f_name,

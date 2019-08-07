@@ -12,29 +12,19 @@ function store_start() {
         rchoice("CDFGHJKLMNPQRSTVWXYZ") +
         "_" +
         $("#mturk_id").val();
-    window.dems =
-        subj_id +
-        "\t" +
-        $("#gender").val() +
-        "\t" +
-        $("#age").val() +
-        "\t" +
-        $("#education").val() +
-        "\t" +
-        $("#mothertongue").val() +
-        "\t" +
-        $("#countries").val() +
-        "\t" +
-        $.browser.name +
-        "\t" +
-        $.browser.version +
-        "\n";
-        // TODO via PHP save starting data
-
+    window.dems = "dems" + "\t" + ["gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + [subj_id,
+        $("#gender").val(),
+        $("#age").val(),
+        $("#education").val(),
+        $("#mothertongue").val(),
+        $("#countries").val(),
+        $.browser.name,
+        $.browser.version
+    ].join("\t");
     $.post(
         "php/store_start.php", {
-            filename_post: f_name,
-            dems_post: dems
+            filename_post: "astart_" + experiment_title,
+            dems_post: dems + "\n"
         },
         function(resp) {
             if (resp.startsWith("Fail")) {
@@ -45,6 +35,7 @@ function store_start() {
         }
     );
 }
+
 function store_trial() {
     subj_data += [
         subj_id, trial_num, "category", vid_name, "decision", "confidence", trial_times.v_start, trial_times.v_end, trial_times.v_closed, "decision_time", "confidence_time", String(new Date().getTime())
