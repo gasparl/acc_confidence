@@ -12,7 +12,7 @@ function store_start() {
         rchoice("CDFGHJKLMNPQRSTVWXYZ") +
         "_" +
         $("#mturk_id").val();
-    window.dems = "dems" + "\t" + ["gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + [subj_id,
+    start_data = [subj_id,
         $("#gender").val(),
         $("#age").val(),
         $("#education").val(),
@@ -20,20 +20,26 @@ function store_start() {
         $("#countries").val(),
         $.browser.name,
         $.browser.version
-    ].join("\t");
+    ];
+    window.dems = "dems" + "\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + start_data.join("/");
+    to_write = start_data.join("\t");
+    headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip"].join("\t");
     $.post(
-        "php/store_start.php", {
-            filename_post: "astart_" + experiment_title,
-            dems_post: dems + "\n"
-        },
-        function(resp) {
-            if (resp.startsWith("Fail")) {
-                alert(resp);
-            } else if (full_validity == "") {
-                $("#passw_display").text("passDemo"); // (resp)
+            "php/store_start.php", {
+                filename_post: "astart_" + experiment_title + ".txt",
+                heads_post: headers,
+                dems_post: to_write
+            },
+            function(resp) {
+                if (resp.startsWith("Fail")) {
+                    alert(resp);
+                }
             }
-        }
-    );
+        )
+        .fail(function(xhr, status, error) {
+            console.log(error);
+            $('#div_start_error').show();
+        });
 }
 
 function store_trial() {
@@ -44,6 +50,7 @@ function store_trial() {
 
 // video settings
 function vid_listen() {
+    vidnames = shuffle(vidnames);
     var video = document.getElementById('vid_id');
     video.addEventListener('timeupdate', function() {
         if (!video.seeking) {
@@ -75,8 +82,6 @@ function vid_listen() {
         trial_times.v_end = now();
     });
 }
-
-vidnames = shuffle(vidnames);
 
 function vid_start() {
     $('#watched_id').css('visibility', 'hidden');

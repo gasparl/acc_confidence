@@ -135,6 +135,10 @@ function shuffle(array) {
     }
     return newarr;
 }
+// random choice from array
+function rchoice(array) {
+    return array[Math.floor(array.length * Math.random())];
+}
 
 function end_task() {
     f_name =

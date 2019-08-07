@@ -7,11 +7,18 @@
     <script src="./js/jquery-2.1.3.min.js" type="text/javascript"></script>
     <script src="./js/jquery.mb.browser.min.js" type="text/javascript"></script>
     <script src="./js/start.js"></script>
+    <script src="./js/main.js"></script>
     <script src="./js/utils.js"></script>
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+
+    <div id="div_start_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;opacity:0.8;" onclick="$('#div_start_error').hide()">Data cannot be saved on the server. The page will work, but your end
+        results can only be saved manually. If this is live testing, you might want to contact lkcsgaspar@gmail.com. (Click on this text to close it.)</div>
+
+    <div id="div_end_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;" onclick="manual_save()">Data cannot be saved on the server. <b>Click anywhere on this text to save your data manually.</b>
+        (You must allow pop-ups.) If this is live testing, send the data to lkcsgaspar@gmail.com (or contact in case of further issues).</div>
 
     <div id="div_intro_general" class="intro">
         <h2 style="text-align:center;"><b>Welcome to this online test!</b></h2>
@@ -79,7 +86,7 @@
             <option value="">-</option>
         </select>
         <br>
-        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), vid_start )">Next</button>
+        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start )">Next</button>
     </div>
 
     <div id="div_instructions" class="main_instr">
@@ -98,7 +105,7 @@
         <br>
         <br>
         <br>
-        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video');">OK</button>
+        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video', true, vid_start);">OK</button>
     </div>
 
     <div id="div_video" style="padding:2%; width: 85%;" class="main_instr">

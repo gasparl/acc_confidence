@@ -26,7 +26,7 @@ function chrome_check() {
         $("#not_chrome_warn").html("<br><i>The test was designed for <b>Google Chrome</b>, but your browser was detected to be " + browser_name + ".<br><br>If you want to do this test, please use Google Chrome.</i><br><br>");
         $("#not_chrome_warn").show();
     } else {
-        $("#div_instructions").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
+        $("#div_intro_general").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
     }
 }
 
