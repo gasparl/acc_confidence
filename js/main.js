@@ -16,14 +16,14 @@ function store_start() {
         $("#gender").val(),
         $("#age").val(),
         $("#education").val(),
-        $("#mothertongue").val(),
         $("#countries").val(),
+        $("#mothertongue").val(),
         $.browser.name,
         $.browser.version
     ];
-    window.dems = "dems" + "\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + start_data.join("/");
+    window.dems = "dems\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + start_data.join("/");
     to_write = start_data.join("\t");
-    headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip"].join("\t");
+    headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip\n"].join("\t");
     $.post(
             "php/store_start.php", {
                 filename_post: "astart_" + experiment_title + ".txt",
@@ -44,7 +44,7 @@ function store_start() {
 
 function store_trial() {
     subj_data += [
-        subj_id, trial_num, "category", vid_name, "decision", "confidence", trial_times.v_start, trial_times.v_end, trial_times.v_closed, "decision_time", "confidence_time", String(new Date().getTime())
+        subj_id, trial_num, "category", vid_name, "decision", "confidence", trial_times.v_start, trial_times.v_end, trial_times.v_closed, "decision_time", "confidence_time", neat_date()
     ].join("\t") + "\n";
 }
 

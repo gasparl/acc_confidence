@@ -96,10 +96,6 @@ function validate_form(form_class) {
     return is_valid;
 }
 
-function seconds_between_dates(startDate, endDate) {
-    return Math.abs(new Date(startDate) - new Date(endDate)) / 1000;
-}
-
 // timing
 var now = function() {
     var performance = window.performance || {};
@@ -140,37 +136,66 @@ function rchoice(array) {
     return array[Math.floor(array.length * Math.random())];
 }
 
+function dl_as_file() {
+    filename_to_dl = f_name;
+    data_to_dl = subj_data;
+    var blobx = new Blob([data_to_dl], {
+        type: 'text/plain'
+    });
+    var elemx = window.document.createElement('a');
+    elemx.href = window.URL.createObjectURL(blobx);
+    elemx.download = filename_to_dl;
+    document.body.appendChild(elemx);
+    elemx.click();
+    document.body.removeChild(elemx);
+}
+
+function copy_to_clip() {
+    element = $('<textarea>').appendTo('body').val(cit_data).select();
+    document.execCommand("Copy");
+    element.remove();
+}
+
+function neat_date() {
+    var m = new Date();
+    return m.getFullYear() + "" +
+        ("0" + (m.getMonth() + 1)).slice(-2) + "" +
+        ("0" + m.getDate()).slice(-2) + "" +
+        ("0" + m.getHours()).slice(-2) + "" +
+        ("0" + m.getMinutes()).slice(-2) + "" +
+        ("0" + m.getSeconds()).slice(-2);
+}
+
+function consent_agreed() {
+    basic_times.consented = neat_date();
+    basic_times.consent_now = now();
+}
+
 function end_task() {
-    f_name =
+    window.f_name =
         experiment_title +
         "_" +
         subj_id +
         ".txt";
-    basic_times.finished = Date();
-    duration_full = seconds_between_dates(
-        basic_times.consented,
-        basic_times.finished
-    );
-    subj_data += dems + [basic_times.loaded,
+    basic_times.finished = neat_date();
+    var duration_full = Math.round((now() - basic_times.consent_now)/600)/100;
+    subj_data += [dems, basic_times.loaded,
             basic_times.consented,
             basic_times.finished,
             duration_full
-        ].join("/");
+        ].join("/") + "\ndate\t" + Date();
     $.post(
         "php/store_finish.php", {
             filename_post: f_name,
             results_post: subj_data
         },
         function(resp) {
-            if (resp.startsWith("Fail")) {
-                alert(resp);
-            } else if (full_validity == "") {
-                $("#passw_display").text("passDemo"); // (resp)
-            }
+            $("#passw_display").text(resp);
         }
     )
     .fail(function(xhr, status, error) {
         console.log(error);
         $('#div_end_error').show();
+        $("#passw_display").html("<i>(server connection failed)</i>");
     });
 }

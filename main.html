@@ -17,7 +17,7 @@
     <div id="div_start_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;opacity:0.8;" onclick="$('#div_start_error').hide()">Data cannot be saved on the server. The page will work, but your end
         results can only be saved manually. If this is live testing, you might want to contact lkcsgaspar@gmail.com. (Click on this text to close it.)</div>
 
-    <div id="div_end_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;" onclick="manual_save()">Data cannot be saved on the server. <b>Click anywhere on this text to save your data manually.</b>
+    <div id="div_end_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;" onclick="dl_as_file()">Data cannot be saved on the server. <b>Click anywhere on this text to save your data manually.</b>
         (You must allow pop-ups.) If this is live testing, send the data to lkcsgaspar@gmail.com (or contact in case of further issues).</div>
 
     <div id="div_intro_general" class="intro">
@@ -54,13 +54,12 @@
             <br> For further information, you are welcome to contact XXX.
             <br>
         </div>
-        <button style="left:20%; top: 90%" class="intro_button" onclick="change_div( this, '#div_intro_dems')">AGREED</button>
+        <button style="left:20%; top: 90%" class="intro_button" onclick="change_div( this, '#div_intro_dems', true, consent_agreed)">AGREED</button>
     </div>
-
 
     <div id="div_intro_dems" style="text-align:left;width: 80%;padding-top: 0%;" class="intro">
         <br>
-        <b>Please write here your MTurk Contributor ID (number): <input type="text" onkeypress='validate(event)' id="mturk_id" class="form_dems" maxlength="16" size="9">
+        <b>Please enter here your MTurk Worker ID: <input type="text" id="mturk_id" class="form_dems" maxlength="16" size="9">
             <br><br>
             Please give the following demographic information about yourself.</b>
         <br>
@@ -85,6 +84,12 @@
         <select id="countries" style="text-transform: capitalize;" class="form_dems">
             <option value="">-</option>
         </select>
+        <br>
+        <br> Mother tongue:
+        <select id="mothertongue" class="form_dems">
+            <option value="">- choose one -</option>
+        </select>
+        <br>
         <br>
         <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start )">Next</button>
     </div>

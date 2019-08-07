@@ -17,7 +17,7 @@ $subject_results = ($_POST['results_post'] . $subj_ip);
 file_put_contents($file_name, $subject_results, FILE_APPEND);
 
 if (strlen($subject_results) > 9000) {
-    echo 'y9weUI24d';
+    echo 'demoPassword';
 } else {
     echo '_';
 }
