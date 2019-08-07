@@ -12,8 +12,8 @@ if (!empty($_SERVER['HTTP_CLIENT_IP'])) // check ip from share internet
 }
 
 $file_name = ('../results/' . $_POST['filename_post']);
-$subject_results = ($_POST['results_post'] . $subj_ip);
+$dems = ($_POST['dems_post'] . $subj_ip);
 
-file_put_contents($file_name, $subject_results, FILE_APPEND);
+file_put_contents($file_name, $dems, FILE_APPEND);
 
 ?>
