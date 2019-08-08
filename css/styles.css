@@ -166,7 +166,10 @@ input[type=text]
    font-weight: bold;
    font-size: 1.6vw;
 }
-
+.slidecontainer {
+  width: 90%;
+  margin: 0 auto;
+}
 .slider {
   -webkit-appearance: none;
   width: 100%;

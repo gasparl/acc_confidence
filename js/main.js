@@ -47,17 +47,18 @@ function save_main() {
         responses.main_first = $('input[name=main_decision]:checked').val();
         responses.main_rt_first = rt;
     }
-        responses.main_last = $('input[name=main_decision]:checked').val();
-        responses.main_rt_last = rt;
+    responses.main_last = $('input[name=main_decision]:checked').val();
+    responses.main_rt_last = rt;
 }
+
 function save_conf() {
     var rt = now();
     if (responses.conf_first === "-") {
-        responses.conf_first = $('input[name=conf_rate]:checked').val();
+        responses.conf_first = $("#conf_rate_id").val();
         responses.conf_rt_first = rt;
     }
-        responses.conf_last = $('input[name=conf_rate]:checked').val();
-        responses.conf_rt_last = rt;
+    responses.conf_last = $("#conf_rate_id").val();
+    responses.conf_rt_last = rt;
 }
 
 function store_trial() {
