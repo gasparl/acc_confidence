@@ -1,6 +1,5 @@
-trial_num = 0;
-trial_times = {};
-
+var trial_num = 0;
+var trial_times = {};
 var subj_data = [
     "subject_id", "trial_number", "category", "video", "decision", "confidence", "v_start", "v_end", "v_closed", "decision_time", "confidence_time", "date_in_ms\n"
 ].join("\t");
@@ -42,9 +41,29 @@ function store_start() {
         });
 }
 
+function save_main() {
+    var rt = now();
+    if (responses.main_first === "-") {
+        responses.main_first = $('input[name=main_decision]:checked').val();
+        responses.main_rt_first = rt;
+    }
+        responses.main_last = $('input[name=main_decision]:checked').val();
+        responses.main_rt_last = rt;
+}
+function save_conf() {
+    var rt = now();
+    if (responses.conf_first === "-") {
+        responses.conf_first = $('input[name=conf_rate]:checked').val();
+        responses.conf_rt_first = rt;
+    }
+        responses.conf_last = $('input[name=conf_rate]:checked').val();
+        responses.conf_rt_last = rt;
+}
+
 function store_trial() {
+    var main_resp = $('input[name=main_decision]:checked').val();
     subj_data += [
-        subj_id, trial_num, "category", vid_name, "decision", "confidence", trial_times.v_start, trial_times.v_end, trial_times.v_closed, "decision_time", "confidence_time", neat_date()
+        subj_id, trial_num, "category", vid_name, main_resp, "confidence", trial_times.v_start, trial_times.v_end, trial_times.v_closed, "decision_time", "confidence_time", neat_date()
     ].join("\t") + "\n";
 }
 
@@ -89,6 +108,16 @@ function vid_start() {
         trial_times.v_start = now();
     });
     trial_num++;
+    window.responses = {
+        main_first: "-",
+        main_rt_first: 0,
+        main_last: "-",
+        main_rt_last: 0,
+        conf_first: "-",
+        conf_rt_first: 0,
+        conf_last: "-",
+        conf_rt_last: 0,
+    };
     window.timeTracking = {
         watchedTime: 0,
         currentTime: 0

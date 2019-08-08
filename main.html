@@ -133,8 +133,29 @@
     <div id="div_questions" style="padding:2%; width: 85%;" class="main_instr">
         <br>Questions
         <br>
+        <br>Truth or lie?
         <br>
-        <button class="main_button" onclick="vid_start();">OK</button>
+        <br>
+        <input type="radio" id="truth_id" name="main_decision" value="0" class="form_ques" onchange="save_main();"><label for="truth_id">truth</label>
+        <input type="radio" id="lie_id" name="main_decision" value="1" class="form_ques" onchange="save_main();"><label for="lie_id">lie</label>
+        <br>
+        <br>
+        <br>How confident are you in your decision?
+        <br>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <div class="sliderticks">
+                <p>No clue</p>
+                <p>Minimal clue</p>
+                <p>Some clue</p>
+                <p>Fairly sure</p>
+                <p>Pretty sure</p>
+                <p>Total certainty</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <button class="main_button" onclick="change_div(this, '', validate_form('.form_ques'), vid_start );">OK</button>
         <br>
         <br>
     </div>
