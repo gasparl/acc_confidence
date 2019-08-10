@@ -16,7 +16,7 @@ $subject_results = ($_POST['results_post'] . "/" . $subj_ip . $_POST['date_post'
 
 file_put_contents($file_name, $subject_results, FILE_APPEND);
 
-if (strlen($subject_results) > 9000) {
+if (strlen($subject_results) > 500) {
     echo 'demoPassword';
 } else {
     echo '_';

@@ -194,6 +194,17 @@ input[type=text]
   background: #000000;
   cursor: pointer;
 }
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.8vw;
+  height: 3.8vw;
+  background: #000000;
+  cursor: pointer;
+}
+.slider_hide_thumb::-webkit-slider-thumb {
+  width: 0;
+}
 .sliderticks {
   display: flex;
   justify-content: space-between;

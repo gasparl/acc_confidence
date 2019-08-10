@@ -96,6 +96,16 @@ function validate_form(form_class) {
     return is_valid;
 }
 
+//after forms, check if all filled in
+function validate_responses() {
+    var is_valid = true;
+    if (responses.conf_first === "-" | responses.main_first === "-") {
+        is_valid = false;
+        alert("Please choose an answer for all questions.");
+    }
+    return is_valid;
+}
+
 // timing
 var now = function() {
     var performance = window.performance || {};
@@ -111,7 +121,7 @@ var now = function() {
             }
         );
     })();
-    return performance.now();
+    return Math.round(performance.now());
 };
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 

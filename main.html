@@ -84,14 +84,13 @@
         <select id="countries" style="text-transform: capitalize;" class="form_dems">
             <option value="">-</option>
         </select>
-        <br>
-        <br> Mother tongue:
+        &nbsp;&nbsp;&nbsp;&nbsp;Mother tongue:
         <select id="mothertongue" class="form_dems">
             <option value="">- choose one -</option>
         </select>
         <br>
         <br>
-        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start )">Next</button>
+        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start, vid_start )">Next</button>
     </div>
 
     <div id="div_instructions" class="main_instr">
@@ -110,7 +109,7 @@
         <br>
         <br>
         <br>
-        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video', true, vid_start);">OK</button>
+        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video');">OK</button>
     </div>
 
     <div id="div_video" style="padding:2%; width: 85%;" class="main_instr">
@@ -124,14 +123,14 @@
             </video>
         </div>
         <br>
-        <br>
         <button id="watched_id" class="main_button" onclick="change_div(this, '#div_questions', true, vid_close_time);">Move on to questions</button>
+        <br>
         <br>
         <button class="main_button_instr" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>
     </div>
 
     <div id="div_questions" style="padding:2%; width: 85%;" class="main_instr">
-        <br>Questions
+        <br><div style="text-align:center;font-weight:bold">Questions</div>
         <br>
         <br>Truth or lie?
         <br>
@@ -142,8 +141,9 @@
         <br>
         <br>How confident are you in your decision?
         <br>
+        <br>
         <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="conf_rate_id" onchange="save_conf()">
+            <input type="range" min="1" max="100" value="50" class="slider form_ques" id="conf_rate_id" onchange="save_conf()">
             <div class="sliderticks">
                 <p>No clue</p>
                 <p>Minimal clue</p>
@@ -155,7 +155,7 @@
         </div>
         <br>
         <br>
-        <button class="main_button" onclick="change_div(this, '', validate_form('.form_ques'), vid_start );">OK</button>
+        <button class="main_button" onclick="change_div(this, '', validate_responses(), store_trial, vid_start );">OK</button>
         <br>
         <br>
     </div>
@@ -174,7 +174,7 @@
         <br>Thank you for your participation!
         <br>
         <br> Info about this test:
-        <br> XXX
+        <br> ..................
         <br><b>
             <br>Your completion password: <span style="color:red" id="passw_display"></span>
             <br></b>
