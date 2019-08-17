@@ -5,13 +5,13 @@ var subj_data = [
 ].join("\t");
 
 function store_start() {
-    subj_id =
+    window.subj_id =
         rchoice("CDFGHJKLMNPQRSTVWXYZ") +
         rchoice("AEIOU") +
         rchoice("CDFGHJKLMNPQRSTVWXYZ") +
         "_" +
         $("#mturk_id").val();
-    start_data = [subj_id,
+    var start_data = [subj_id,
         $("#gender").val(),
         $("#age").val(),
         $("#education").val(),
@@ -21,8 +21,8 @@ function store_start() {
         $.browser.version
     ];
     window.dems = "dems\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + start_data.join("/");
-    to_write = start_data.join("\t");
-    headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip\n"].join("\t");
+    var to_write = start_data.join("\t");
+    var headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip\n"].join("\t");
     $.post(
             "php/store_start.php", {
                 filename_post: "a_demographics_" + experiment_title + ".txt",
