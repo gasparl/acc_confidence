@@ -1,5 +1,6 @@
 // translation
 var tranlate_count = 0;
+
 function detect_transl() {
     setInterval(function() {
         if (
@@ -189,25 +190,84 @@ function end_task() {
         subj_id +
         ".txt";
     basic_times.finished = neat_date();
-    var duration_full = Math.round((now() - basic_times.consent_now)/600)/100;
+    var duration_full = Math.round((now() - basic_times.consent_now) / 600) / 100;
     subj_data += [dems, basic_times.loaded,
-            basic_times.consented,
-            basic_times.finished,
-            duration_full
-        ].join("/");
+        basic_times.consented,
+        basic_times.finished,
+        duration_full
+    ].join("/");
     $.post(
-        "php/store_finish.php", {
-            filename_post: f_name,
-            results_post: subj_data,
-            date_post: "\ndate\t" + Date()
-        },
-        function(resp) {
-            $("#passw_display").text(resp);
-        }
-    )
-    .fail(function(xhr, status, error) {
-        console.log(error);
-        $('#div_end_error').show();
-        $("#passw_display").html("<i>(server connection failed)</i>");
+            "php/store_finish.php", {
+                filename_post: f_name,
+                results_post: subj_data,
+                date_post: "\ndate\t" + Date()
+            },
+            function(resp) {
+                $("#passw_display").text(resp);
+            }
+        )
+        .fail(function(xhr, status, error) {
+            console.log(error);
+            $('#div_end_error').show();
+            $("#passw_display").html("<i>(server connection failed)</i>");
+        });
+}
+
+
+function sum(array_to_sum) {
+    var sum = 0;
+    array_to_sum.forEach(function(item) {
+        sum += item;
     });
+    return sum;
+}
+
+function select_cats() {
+    weights = {
+        press: 0.2,
+        inmates: 1,
+        hotels: 0.6,
+        weekends: 0.2,
+        mocks: 0
+    };
+    if (Object.keys(cat_intros).sort().join(',') === Object.keys(weights).sort().join(',')) {
+        console.log("cats mismatch:");
+        console.log("Object.keys(cat_intros):", Object.keys(cat_intros));
+        console.log("Object.keys(weights):", Object.keys(weights));
+    }
+    var final_cats = [];
+    for (var i = 0; i < 2; i++) {
+        var random_size = Math.random() * sum(Object.values(weights));
+        var scale = 0;
+        for (var catkey in weights) {
+            scale += weights[catkey];
+            if (random_size <= scale) {
+                final_cats.push(catkey);
+                delete weights[catkey];
+                break;
+            }
+        }
+    }
+    return (final_cats);
+}
+
+function testx() {
+    var test = [];
+    for (var i = 0; i < 500; i++) {
+        var news = select_cats();
+        test = test.concat(news);
+        console.log(news.length);
+    }
+    var counts = {};
+    for (var i2 = 0; i2 < test.length; i2++) {
+        var num = test[i2];
+        counts[num] = counts[num] ? counts[num] + 1 : 1;
+    }
+    console.log(counts);
+    console.log(counts.weekends / counts.inmates);
+    console.log(counts.weekends / counts.mocks);
+    console.log(counts.press / counts.inmates);
+    console.log(counts.press / counts.mocks);
+    console.log(counts.hotels / counts.inmates);
+    console.log(counts.hotels / counts.mocks);
 }

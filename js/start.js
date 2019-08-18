@@ -35,29 +35,62 @@ function chrome_check() {
     }
 }
 
-// video names list
+// STIMULI lists
 
-var stim_press = [];
-["vid_counter", "vid_purple"].forEach(function(namee) {
-    stim_press.push({
-        name: namee,
-        mode: "video",
-        category: "press"
+var cat_intros = {
+    press: "some press intro",
+    inmates: "some inmate intro",
+    hotels: "some hotel intro",
+    weekends: "some weekend intro"
+};
+
+function get_stims() {
+    window.stimuli = {};
+
+    stimuli.press = [];
+    press = ["vid_counter2", "vid_purple2"];
+    press = shuffle(press);
+    press.forEach(function(namee) {
+        stim_press.push({
+            name: namee,
+            mode: "video",
+            category: "press"
+        });
     });
-});
 
-var stim_inmates = [];
-["vid_counter", "vid_purple"].forEach(function(namee) {
-    stim_inmates.push({
-        name: namee,
-        mode: "video",
-        category: "inmates"
+    stimuli.inmates = [];
+    inmates = ["vid_counter", "vid_purple"];
+    inmates = rchoice(inmates);
+    inmates.forEach(function(namee) {
+        stimuli.inmates.push({
+            name: namee,
+            mode: "video",
+            category: "inmates"
+        });
     });
-});
 
+    stimuli.hotels = [];
+    hotels = ['opinion_neg_1_gu.txt', 'opinion_neg_10_gu.txt', 'opinion_neg_100_gu.txt', 'opinion_neg_101_gu.txt', 'opinion_neg_102_gu.txt', 'opinion_neg_103_gu.txt'];
+    hotels = shuffle(hotels).splice(0, 3);
+    hotels.forEach(function(namee) {
+        stimuli.hotels.push({
+            name: namee,
+            mode: "text",
+            category: "hotels"
+        });
+    });
 
-
-var stimuli = stim_press + stim_inmates;
+    stimuli.weekends = [];
+    weekends = ['past_weekend_2400_gu.txt', 'past_weekend_2401_gu.txt', 'past_weekend_2402_gu.txt', 'past_weekend_2403_gu.txt', 'past_weekend_2404_gu.txt', 'past_weekend_2405_gu.txt'];
+    weekends = shuffle(weekends).splice(0, 3);
+    weekends.forEach(function(namee) {
+        stimuli.weekends.push({
+            name: namee,
+            mode: "text",
+            category: "weekends"
+        });
+    });
+}
 
 // countries list
 var countrs = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Vatican City", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea ", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea ", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];

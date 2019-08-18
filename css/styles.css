@@ -1,30 +1,40 @@
 #html_id {
     background: #666666;
 }
-select{font-family:inherit;font-size:calc(100% - 0.1vw);}
-input{font-family:inherit;font-size:calc(100% - 0.1vw);}
+
+select {
+    font-family: inherit;
+    font-size: calc(100% - 0.1vw);
+}
+
+input {
+    font-family: inherit;
+    font-size: calc(100% - 0.1vw);
+}
+
 .intro {
     border-radius: 0.2vw;
-    font-size:1.5vw;
-    font-family:Helvetica;
+    font-size: 1.5vw;
+    font-family: Helvetica;
     width: 95%;
     background-color: #cccccc;
     margin: 0 auto;
     padding: 2%;
     text-align: justify;
-    display:none;
+    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 #ic {
     color: Black;
     overflow: scroll;
     background-color: #A9A9A9;
     overflow-x: hidden;
     max-height: 70%;
-    width:95%;
+    width: 95%;
     padding: 1%;
     margin: 0;
     position: absolute;
@@ -36,28 +46,31 @@ input{font-family:inherit;font-size:calc(100% - 0.1vw);}
     transform: translate(-50%, -50%);
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
 .intro_button {
-    -moz-box-shadow:inset 0vw 0.1vw 0vw 0vw #B0B0B0;
-    -webkit-box-shadow:inset 0vw 0.1vw 0vw 0vw #B0B0B0;
-    box-shadow:inset 0vw 0.1vw 0vw 0vw #B0B0B0;
-    background-color:#a6a6a6;
-    border-radius:0.1vw;
-    border:0.1vw solid #dcdcdc;
-    cursor:pointer;
-    color:#000000;
+    -moz-box-shadow: inset 0vw 0.1vw 0vw 0vw #B0B0B0;
+    -webkit-box-shadow: inset 0vw 0.1vw 0vw 0vw #B0B0B0;
+    box-shadow: inset 0vw 0.1vw 0vw 0vw #B0B0B0;
+    background-color: #a6a6a6;
+    border-radius: 0.1vw;
+    border: 0.1vw solid #dcdcdc;
+    cursor: pointer;
+    color: #000000;
     font-size: 1.8vw;
-    font-family:Helvetica;
-    font-weight:bold;
-    padding:0.6vw 2.4vw;
-    text-decoration:none;
-    text-shadow:0vw 0.1vw 0vw #C0C0C0;
-    position:relative;
+    font-family: Helvetica;
+    font-weight: bold;
+    padding: 0.6vw 2.4vw;
+    text-decoration: none;
+    text-shadow: 0vw 0.1vw 0vw #C0C0C0;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
+
 .intro_button:hover {
-    background-color:#8c8c8c;
+    background-color: #8c8c8c;
 }
+
 .maintext {
     font-family: Helvetica;
     border-radius: 0.4vw;
@@ -76,7 +89,7 @@ input{font-family:inherit;font-size:calc(100% - 0.1vw);}
     padding-right: 5%;
     padding-top: 5%;
     background: #FFFFFF;
-    display:none;
+    display: none;
 }
 
 .main_instr {
@@ -91,10 +104,11 @@ input{font-family:inherit;font-size:calc(100% - 0.1vw);}
     padding-right: 3%;
     padding-top: 3%;
     background: #FFFFFF;
-    display:none;
+    display: none;
     left: 50%;
     transform: translateX(-50%)
 }
+
 .main_button {
     -webkit-border-radius: 5;
     -moz-border-radius: 5;
@@ -105,14 +119,16 @@ input{font-family:inherit;font-size:calc(100% - 0.1vw);}
     font-size: 2.2vw;
     padding: 1.5%;
     text-decoration: none;
-    position:relative;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
+
 .main_button:hover {
     background: #1a1a1a;
     text-decoration: none;
 }
+
 .main_button_instr {
     -webkit-border-radius: 5;
     -moz-border-radius: 5;
@@ -126,22 +142,50 @@ input{font-family:inherit;font-size:calc(100% - 0.1vw);}
     padding-right: 2%;
     padding-top: 0.3%;
     text-decoration: none;
-    position:relative;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
+
 .main_button_instr:hover {
     background: #262626;
     text-decoration: none;
 }
+
+#div_stim {
+    font-family: Helvetica;
+    border-radius: 0.4vw;
+    font-size: 1.5vw;
+    background: #FFFFFF;
+    display: none;
+    position: absolute;
+    width: auto;
+    margin: 1% 2% 1% 1%;
+}
+
 #vid_container {
     text-align: center;
 }
+
+#text_container {
+    text-align: center;
+}
+#text_id {
+    text-align: justify;
+    border: 3px;
+    border-style: solid;
+    border-color: #000000;
+    padding: 1vw;
+    margin: 0vw 3vw 3vw 3vw;
+    font-size: 1.6vw;
+}
+
 input[type=radio] {
     position: absolute;
     visibility: hidden;
     display: none;
 }
+
 label {
     color: #666;
     display: inline-block;
@@ -150,75 +194,82 @@ label {
     padding: 3px 20px;
     border: solid 1px #000;
 }
+
 input[type=radio]:checked+label {
     color: #000;
     background: #999;
 }
-input[type=radio]:not(:checked):hover+label{
-   color: #000;
-   background: #bbb;
+
+input[type=radio]:not(:checked):hover+label {
+    color: #000;
+    background: #bbb;
 }
-input[type=text]
-{
-   border: none;
-   outline: none;
-   padding: 0px 0px 0px 0px;
-   font-weight: bold;
-   font-size: 1.6vw;
+
+input[type=text] {
+    border: none;
+    outline: none;
+    padding: 0px 0px 0px 0px;
+    font-weight: bold;
+    font-size: 1.6vw;
 }
+
 .slidecontainer {
-  width: 90%;
-  margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
+
 .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 0.8vw;
-  background: #555555;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  margin: 0;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.8vw;
+    background: #555555;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin: 0;
 }
 
 .slider:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.8vw;
-  height: 3.8vw;
-  background: #000000;
-  cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.8vw;
+    height: 3.8vw;
+    background: #000000;
+    cursor: pointer;
 }
+
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.8vw;
-  height: 3.8vw;
-  background: #000000;
-  cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.8vw;
+    height: 3.8vw;
+    background: #000000;
+    cursor: pointer;
 }
+
 .slider_hide_thumb::-webkit-slider-thumb {
-  width: 0;
+    width: 0;
 }
+
 .sliderticks {
-  display: flex;
-  justify-content: space-between;
-  white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
 }
 
 .sliderticks p {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  width: 2px;
-  background: #777777;
-  height: 1.2vw;
-  line-height: 5.8vw;
-  margin: 0 0 5.0vw 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 2px;
+    background: #777777;
+    height: 1.2vw;
+    line-height: 5.8vw;
+    margin: 0 0 5.0vw 0;
 }

@@ -90,7 +90,7 @@
         </select>
         <br>
         <br>
-        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start, vid_start )">Next</button>
+        <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start )">Next</button>
     </div>
 
     <div id="div_instructions" class="main_instr">
@@ -109,28 +109,45 @@
         <br>
         <br>
         <br>
-        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_video');">OK</button>
+        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_stim', true, first_start);">OK</button>
     </div>
 
-    <div id="div_video" style="padding:2%; width: 85%;" class="main_instr">
+    <div id="div_cat_intro" style="padding:2%; width: 90%;" class="main_instr">
+        <br>
+        <span id="cat_text_id"></span>
+        <br>
+        <button class="main_button" onclick="change_div(this, '', true, trial_start );">OK</button>
+        <br>
+        <br>
+    </div>
+
+
+    <div id="div_stim">
         <div id="vid_container" style="text-align: center;">
             <p>Please watch the full video carefully.</p>
-        </div>
-        <br>
-        <div id="vid_container">
+            <br>
             <video id="vid_id" controls center>
                 <source src="" type="video/mp4">
             </video>
         </div>
+        <div id="text_container">
+            <p>Please read the text carefully.</p>
+            <br>
+            <p id="text_id">Please read the text carefully.</p>
+
+        </div>
         <br>
-        <button id="watched_id" class="main_button" onclick="change_div(this, '#div_questions', true, vid_close_time);">Move on to questions</button>
+        <button id="watched_id" style="position: relative;left: 50%;transform: translateX(-50%)" class="main_button" onclick="change_div(this, '#div_questions', true, vid_close_time);">Move on to questions</button>
         <br>
         <br>
-        <button class="main_button_instr" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>
+        <button class="main_button_instr" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>
+        <br>
+        <br>
     </div>
 
-    <div id="div_questions" style="padding:2%; width: 85%;" class="main_instr">
-        <br><div style="text-align:center;font-weight:bold">Questions</div>
+    <div id="div_questions" style="padding:2%; width: 90%;" class="main_instr">
+        <br>
+        <div style="text-align:center;font-weight:bold">Questions</div>
         <br>
         <br>Truth or lie?
         <br>
@@ -155,7 +172,7 @@
         </div>
         <br>
         <br>
-        <button class="main_button" onclick="change_div(this, '', validate_responses(), store_trial, vid_start );">OK</button>
+        <button class="main_button" onclick="change_div(this, '', validate_responses(), store_trial, trial_start );">OK</button>
         <br>
         <br>
     </div>
