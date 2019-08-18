@@ -1,7 +1,7 @@
 var trial_num = 0;
 var trial_times = {};
 var subj_data = [
-    "subject_id", "trial_number", "category", "video", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "date_in_ms\n"
+    "subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "date_in_ms\n"
 ].join("\t");
 
 function store_start() {
@@ -118,8 +118,11 @@ function allow_pass() {
 function load_text() {
     $('#text_id').load("./stims/" + current_cat + "/" + current_stim.name,
         function(responseTxt, statusTxt, xhr) {
-            if (statusTxt == "error") {
-                alert("Something went wrong. Please make sure your internet connection is working.");
+            if (statusTxt == "error" && load_error < 10) {
+                load_error++;
+                var msg = "Something went wrong. Please make sure your internet connection is working.";
+                alert(msg);
+                console.log(msg);
                 load_text();
             } else {
                 $('#div_stim').show();
@@ -155,7 +158,6 @@ function trial_start() {
             conf_rt_last: 0,
         };
         if (current_stim.mode === "video") {
-            $('#text_container').text("");
             $('#text_container').hide();
             document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
             $('#vid_container').show();
@@ -171,6 +173,7 @@ function trial_start() {
             $('#vid_container').hide();
             $('#text_container').show();
             window.allow_move = false;
+            window.load_error = 0;
             load_text();
         }
     } else if (task_categories.length > 0) {
