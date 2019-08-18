@@ -130,14 +130,15 @@
                 <source src="" type="video/mp4">
             </video>
         </div>
+
         <div id="text_container">
             <p>Please read the text carefully.</p>
             <br>
-            <p id="text_id">Please read the text carefully.</p>
-
+            <p id="text_id"></p>
         </div>
+
         <br>
-        <button id="watched_id" style="position: relative;left: 50%;transform: translateX(-50%)" class="main_button" onclick="change_div(this, '#div_questions', true, vid_close_time);">Move on to questions</button>
+        <button id="watched_id" style="position: relative;left: 50%;transform: translateX(-50%)" class="main_button" onclick="change_div(this, '#div_questions', allow_pass(), vid_close_time);">Move on to questions</button>
         <br>
         <br>
         <button class="main_button_instr" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_instructions', true, vid_pause);">show full instructions again</button>

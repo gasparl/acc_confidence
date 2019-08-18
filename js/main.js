@@ -43,7 +43,7 @@ function store_start() {
 
 function store_trial() {
     subj_data += [
-        subj_id, trial_num, "category", vid_name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, neat_date()
+        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, neat_date()
     ].join("\t") + "\n";
 }
 
@@ -70,7 +70,6 @@ function save_conf() {
 
 // video settings
 function vid_listen() {
-    vidnames = shuffle(vidnames);
     var video = document.getElementById('vid_id');
     video.addEventListener('timeupdate', function() {
         if (!video.seeking) {
@@ -94,7 +93,6 @@ function vid_listen() {
     });
 }
 
-
 function first_start() {
     if (trial_num === 0) {
         window.task_categories = shuffle(select_cats());
@@ -108,23 +106,35 @@ function categ_start() {
     $('#div_cat_intro').show();
 }
 
+function allow_pass() {
+    if (allow_move == false) {
+        alert("Please invest some more time into reading the text.");
+    }
+    return allow_move;
+}
+
 function trial_start() {
     if (stimuli[current_cat].length > 0) {
         window.current_stim = stimuli[current_cat].shift();
         if (current_stim.mode === "video") {
             $('#text_container').text("");
             $('#text_container').hide();
-            document.getElementById("vid_id").src = "stims/" + current_cat + "/" + current_stim.name + ".mp4";
+            document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
             $('#vid_container').show();
             $('#watched_id').css('visibility', 'hidden');
             $('video').one('play', function() {
                 trial_times.stim_start = now();
             });
+            window.allow_move = true;
         } else {
             document.getElementById("vid_id").src = "";
             $('#vid_container').hide();
-            $('#text_id').load("stims/" + current_cat + "/" + current_stim.name );
+            $('#text_id').load("./stims/" + current_cat + "/" + current_stim.name);
             $('#text_container').show();
+            window.allow_move = false;
+            setTimeout(function() {
+                allow_move = true;
+            }, 2000);
         }
         trial_times = {
             stim_start: "-",

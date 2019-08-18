@@ -53,8 +53,7 @@ function get_stims() {
     press.forEach(function(namee) {
         stim_press.push({
             name: namee,
-            mode: "video",
-            category: "press"
+            mode: "video"
         });
     });
 
@@ -64,8 +63,7 @@ function get_stims() {
     inmates.forEach(function(namee) {
         stimuli.inmates.push({
             name: namee,
-            mode: "video",
-            category: "inmates"
+            mode: "video"
         });
     });
 
@@ -75,8 +73,7 @@ function get_stims() {
     hotels.forEach(function(namee) {
         stimuli.hotels.push({
             name: namee,
-            mode: "text",
-            category: "hotels"
+            mode: "text"
         });
     });
 
@@ -86,8 +83,7 @@ function get_stims() {
     weekends.forEach(function(namee) {
         stimuli.weekends.push({
             name: namee,
-            mode: "text",
-            category: "weekends"
+            mode: "text"
         });
     });
 }
