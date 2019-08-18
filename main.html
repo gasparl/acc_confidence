@@ -10,10 +10,7 @@
     <script src="./js/main.js"></script>
     <script src="./js/utils.js"></script>
     <link href="./css/styles.css" rel="stylesheet" type="text/css">
-    <link rel=icon href=./css/lgo.png>
-</head>
-
-<body>
+    <link rel=icon href=./css/lgo.png> </head> <body>
 
     <div id="div_start_error" style="background:red;color:black;font-size:2.2vw;display:none;position:absolute;z-index:100;opacity:0.8;" onclick="$('#div_start_error').hide()">Data cannot be saved on the server. The page will work, but your end
         results can only be saved manually. If this is live testing, you might want to contact lkcsgaspar@gmail.com. (Click on this text to close it.)</div>
@@ -71,7 +68,7 @@
             <option value="1">Male</option>
             <option value="2">Female</option>
         </select> &nbsp;&nbsp;&nbsp;&nbsp;Highest education:
-        <select id="education" >
+        <select id="education">
             <option value="">- choose one -</option>
             <option value="1">Elementary School</option>
             <option value="2">High School</option>
@@ -149,15 +146,17 @@
         <br>
     </div>
 
-    <div id="div_questions" style="padding:2%; width: 90%;" class="main_instr">
+    <div id="div_questions" style="padding:2%; width: 90%;text-align:center;" class="main_instr">
         <br>
-        <div style="text-align:center;font-weight:bold">Questions</div>
+        <div style="font-weight:bold; text-decoration: underline;">Questions</div>
+        <br>
         <br>
         <br>Truth or lie?
         <br>
         <br>
         <input type="radio" id="truth_id" name="main_decision" value="0" class="form_ques" onchange="save_main();"><label for="truth_id">truth</label>
         <input type="radio" id="lie_id" name="main_decision" value="1" class="form_ques" onchange="save_main();"><label for="lie_id">lie</label>
+        <br>
         <br>
         <br>
         <br>How confident are you in your decision?
@@ -176,7 +175,7 @@
         </div>
         <br>
         <br>
-        <button class="main_button" onclick="change_div(this, '', validate_responses(), store_trial, trial_start );">OK</button>
+        <button class="main_button" style="left: 0; transform: none;" onclick="change_div(this, '', validate_responses(), store_trial, trial_start );">OK</button>
         <br>
         <br>
     </div>
@@ -203,6 +202,6 @@
         <button class="intro_button" onclick="window.location = end_url;">Exit</button>
     </div>
 
-</body>
+    </body>
 
 </html>
