@@ -64,13 +64,13 @@
             Please give the following demographic information about yourself.</b>
         <br>
         <br> Age:
-        <input type="text" onkeypress='validate(event)' id="age" class="form_dems" maxlength="2" size="4"> &nbsp;&nbsp;&nbsp;&nbsp;Gender:
-        <select id="gender" class="form_dems">
+        <input type="text" onkeypress='validate(event)' id="age" maxlength="2" size="4"> &nbsp;&nbsp;&nbsp;&nbsp;Gender:
+        <select id="gender">
             <option value="">- choose one -</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
         </select> &nbsp;&nbsp;&nbsp;&nbsp;Highest education:
-        <select id="education" class="form_dems">
+        <select id="education" >
             <option value="">- choose one -</option>
             <option value="1">Elementary School</option>
             <option value="2">High School</option>
@@ -81,11 +81,11 @@
         </select>
         <br>
         <br>Your country of origin:
-        <select id="countries" style="text-transform: capitalize;" class="form_dems">
+        <select id="countries" style="text-transform: capitalize;">
             <option value="">- choose one -</option>
         </select>
         &nbsp;&nbsp;&nbsp;&nbsp;Mother tongue:
-        <select id="mothertongue" class="form_dems">
+        <select id="mothertongue">
             <option value="">- choose one -</option>
         </select>
         <br>
@@ -109,12 +109,14 @@
         <br>
         <br>
         <br>
-        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '#div_stim', true, first_start);">OK</button>
+        <button class="main_button" style="position: relative;left: 50%;transform: translateX(-50%)" onclick="change_div(this, '', true, first_start);">OK</button>
     </div>
 
-    <div id="div_cat_intro" style="padding:2%; width: 90%;" class="main_instr">
+    <div id="div_cat_intro" style="padding:2%; width: 90%; font-size: 1.6vw" class="main_instr">
         <br>
         <span id="cat_text_id"></span>
+        <br>
+        <br>
         <br>
         <button class="main_button" onclick="change_div(this, '', true, trial_start );">OK</button>
         <br>

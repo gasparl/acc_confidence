@@ -159,7 +159,7 @@ input {
     background: #FFFFFF;
     display: none;
     position: absolute;
-    width: auto;
+    min-width: 96%;
     margin: 1% 2% 1% 1%;
 }
 

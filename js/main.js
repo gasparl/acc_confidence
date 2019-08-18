@@ -84,7 +84,7 @@ function vid_listen() {
         var delta = video.currentTime - tracked_time;
         if (Math.abs(delta) > 0.01) {
             //play back from where the user started seeking after rewind or without rewind
-            video.currentTime = currentTime;
+            video.currentTime = tracked_time;
         }
     });
     video.addEventListener("ended", function() {
@@ -97,12 +97,14 @@ function first_start() {
     if (trial_num === 0) {
         window.task_categories = shuffle(select_cats());
         categ_start();
+    } else {
+        $('#div_stim').show();
     }
 }
 
 function categ_start() {
     window.current_cat = task_categories.shift();
-    $('#cat_text_id').text(cat_intros.current_cat);
+    $('#cat_text_id').text(cat_intros[current_cat]);
     $('#div_cat_intro').show();
 }
 
@@ -113,29 +115,25 @@ function allow_pass() {
     return allow_move;
 }
 
+function load_text() {
+    $('#text_id').load("./stims/" + current_cat + "/" + current_stim.name,
+        function(responseTxt, statusTxt, xhr) {
+            if (statusTxt == "error") {
+                alert("Something went wrong. Please make sure your internet connection is working.");
+                load_text();
+            } else {
+                $('#div_stim').show();
+                trial_times.stim_start = now();
+                setTimeout(function() {
+                    allow_move = true;
+                }, 2000);
+            }
+        });
+}
+
 function trial_start() {
     if (stimuli[current_cat].length > 0) {
         window.current_stim = stimuli[current_cat].shift();
-        if (current_stim.mode === "video") {
-            $('#text_container').text("");
-            $('#text_container').hide();
-            document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
-            $('#vid_container').show();
-            $('#watched_id').css('visibility', 'hidden');
-            $('video').one('play', function() {
-                trial_times.stim_start = now();
-            });
-            window.allow_move = true;
-        } else {
-            document.getElementById("vid_id").src = "";
-            $('#vid_container').hide();
-            $('#text_id').load("./stims/" + current_cat + "/" + current_stim.name);
-            $('#text_container').show();
-            window.allow_move = false;
-            setTimeout(function() {
-                allow_move = true;
-            }, 2000);
-        }
         trial_times = {
             stim_start: "-",
             stim_end: "-",
@@ -144,6 +142,7 @@ function trial_start() {
         $('#truth_id').prop('checked', false);
         $('#lie_id').prop('checked', false);
         $("#conf_rate_id").addClass("slider_hide_thumb");
+        once_asked = false;
         trial_num++;
         window.responses = {
             main_first: "-",
@@ -155,7 +154,25 @@ function trial_start() {
             conf_last: "-",
             conf_rt_last: 0,
         };
-        window.tracked_time = 0;
+        if (current_stim.mode === "video") {
+            $('#text_container').text("");
+            $('#text_container').hide();
+            document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
+            $('#vid_container').show();
+            $('#watched_id').css('visibility', 'hidden');
+            $('video').one('play', function() {
+                trial_times.stim_start = now();
+            });
+            window.tracked_time = 0;
+            window.allow_move = true;
+            $('#div_stim').show();
+        } else {
+            document.getElementById("vid_id").src = "";
+            $('#vid_container').hide();
+            $('#text_container').show();
+            window.allow_move = false;
+            load_text();
+        }
     } else if (task_categories.length > 0) {
         $('#div_questions').hide();
         categ_start();

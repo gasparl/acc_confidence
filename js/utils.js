@@ -92,7 +92,7 @@ function validate_form(form_class) {
         if ($(this).val() === "") is_valid = false;
     });
     if (is_valid === false) {
-        alert("Please fill in all fields.");
+        alert("Please provide your MTurk ID! Otherwise we cannot reimburse you.");
     }
     return is_valid;
 }
@@ -100,9 +100,12 @@ function validate_form(form_class) {
 //after forms, check if all filled in
 function validate_responses() {
     var is_valid = true;
-    if (responses.conf_first === "-" | responses.main_first === "-") {
-        is_valid = false;
-        alert("Please choose an answer for all questions.");
+    if (once_asked === false) {
+        if (responses.conf_first === "-" | responses.main_first === "-") {
+            is_valid = false;
+            alert("Note: you did not answer all questions. Please reconsider.");
+        }
+        window.once_asked = true;
     }
     return is_valid;
 }

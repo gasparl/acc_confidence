@@ -9,6 +9,7 @@ $(document).ready(function() {
     chrome_check();
     detect_transl();
     vid_listen();
+    get_stims();
 
     // dropdowns
     var countr_choices = "";
@@ -51,7 +52,7 @@ function get_stims() {
     press = ["vid_counter2", "vid_purple2"];
     press = shuffle(press);
     press.forEach(function(namee) {
-        stim_press.push({
+        stimuli.press.push({
             name: namee,
             mode: "video"
         });
@@ -60,12 +61,10 @@ function get_stims() {
     stimuli.inmates = [];
     inmates = ["vid_counter", "vid_purple"];
     inmates = rchoice(inmates);
-    inmates.forEach(function(namee) {
-        stimuli.inmates.push({
-            name: namee,
-            mode: "video"
-        });
-    });
+    stimuli.inmates = [{
+        name: inmates,
+        mode: "video"
+    }];
 
     stimuli.hotels = [];
     hotels = ['opinion_neg_1_gu.txt', 'opinion_neg_10_gu.txt', 'opinion_neg_100_gu.txt', 'opinion_neg_101_gu.txt', 'opinion_neg_102_gu.txt', 'opinion_neg_103_gu.txt'];
