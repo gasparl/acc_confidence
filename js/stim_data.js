@@ -4,7 +4,7 @@ function get_data(cat) {
         ["vid_counter2", "What was in the press video 1?", 1],
         ["vid_purple2", "What was in the press video 2?", 0]
     ];
-    base_data.inmate = [
+    base_data.inmates = [
         ["vid_counter", "What was in the inmate video 1?", 1],
         ["vid_purple", "What was in the inmate video2?", 0]
     ];

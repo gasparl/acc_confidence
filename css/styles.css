@@ -170,6 +170,7 @@ input {
 #text_container {
     text-align: center;
 }
+
 #text_id {
     text-align: justify;
     border: 3px;
@@ -213,8 +214,17 @@ input[type=text] {
     font-size: 1.6vw;
 }
 
+.main_quests {
+    background: #e6e6e6;
+}
+
+.optional {
+    width: 80%;
+    margin: 0 auto;
+}
+
 .slidecontainer {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
 }
 

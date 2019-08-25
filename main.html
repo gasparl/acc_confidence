@@ -149,61 +149,65 @@
 
     <div id="div_questions" style="padding:2%; width: 90%;text-align:center;" class="main_instr">
         <br>
-        <div style="font-weight:bold; text-decoration: underline;">Questions</div>
         <br>
-        <br>
-        <br>Truth or lie?
-        <br>
-        <br>
-        <input type="radio" id="truth_id" name="main_decision" value="0" class="form_ques" onchange="save_main();"><label for="truth_id">truth</label>
-        <input type="radio" id="lie_id" name="main_decision" value="1" class="form_ques" onchange="save_main();"><label for="lie_id">lie</label>
-        <br>
-        <br>
-        <br>
-        <br>How confident are you in your decision?
-        <br>
-        <br>
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider form_ques" id="conf_rate_id" onchange="save_conf()">
-            <div class="sliderticks">
-                <p>No clue</p>
-                <p>Minimal clue</p>
-                <p>Some clue</p>
-                <p>Fairly sure</p>
-                <p>Pretty sure</p>
-                <p>Total certainty</p>
+        <div class="main_quests">
+            <br><b>Truth or lie?</b>
+            <br>
+            <br>
+            <input type="radio" id="truth_id" name="main_decision" value="0" class="form_ques" onchange="save_main();"><label for="truth_id">truth</label>
+            <input type="radio" id="lie_id" name="main_decision" value="1" class="form_ques" onchange="save_main();"><label for="lie_id">lie</label>
+            <br>
+            <br>
+            <br>
+            <br><b>How confident are you in your decision?</b>
+            <br>
+            <br>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="50" class="slider form_ques" id="conf_rate_id" onchange="save_conf()">
+                <div class="sliderticks">
+                    <p>No clue</p>
+                    <p>Minimal clue</p>
+                    <p>Some clue</p>
+                    <p>Fairly sure</p>
+                    <p>Pretty sure</p>
+                    <p>Total certainty</p>
+                </div>
             </div>
+            <br>
+            <br>
+            <br><b>Attention check: <span id="attention_id"></span></b>
+            <br>
+            <br>
+            <input type="radio" id="yes_id" name="attention_check" value="1" class="form_ques" onchange="save_main();"><label for="yes_id">Yes</label>
+            <input type="radio" id="no_id" name="attention_check" value="0" class="form_ques" onchange="save_main();"><label for="no_id">No</label>
+            <br>
+            <br>
         </div>
         <br>
-        <br>
-        <br>Attention check: <span id="attention_id"></span>
-        <br>
-        <br>
-        <input type="radio" id="yes_id" name="attention_check" value="1" class="form_ques" onchange="save_main();"><label for="yes_id">Yes</label>
-        <input type="radio" id="no_id" name="attention_check" value="0" class="form_ques" onchange="save_main();"><label for="no_id">No</label>
-        <br>
-        <br>
-        <br>
-        <br>Did you have any problems understanding any of the content (e.g. due to bad audio or poor English)?
-        <br>
-        <br>
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="0" class="slider" id="clarity_rate_id">
-            <div class="sliderticks">
-                <p>It was all perfectly clear</p>
-                <p>Some of it was unclear</p>
-                <p>It was all very unclear</p>
+        <div class="optional">
+            <br>
+            <br>Was the content clear to you (e.g. good audio, comprehensible English)?
+            <br>
+            <br>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="100" value="0" class="slider" id="clarity_rate_id">
+                <div class="sliderticks">
+                    <p>All very unclear</p>
+                    <p>Rather unclear</p>
+                    <p>Rather clear</p>
+                    <p>All perfectly clear</p>
+                </div>
             </div>
+            <br>
+            <br>
+            <br>
+            Do you have any specific reasons for your truth/lie choice (e.g. some specific expressions or other cues)? If so, you are welcome to note them below.
+            <br>
+            <br>
+            <textarea id="cues_id" style="width:80%;" rows="2" maxlength="300"></textarea>
+            <br>
+            <br>
         </div>
-        <br>
-        <br>
-        <br>
-        Do you have any specific reasons for your truth/lie choice (e.g. some specific expressions or other cues)? If so, you are welcome to note them below.
-        <br>
-        <br>
-        <textarea id="cues_id" style="width:80%;" rows="2" maxlength="300"></textarea>
-        <br>
-        <br>
         <br>
         <br>
         <br>

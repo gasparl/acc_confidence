@@ -40,14 +40,25 @@ function store_start() {
 }
 
 function store_trial() {
+    var incorr, attention_resp, clarity_resp;
     attention_resp = $('input[name=attention_check]:checked').val();
-    if (attention_resp == current_stim.att_valid) {
-        incorr = 0;
+    if (attention_resp == undefined) {
+        attention_resp = "";
+        incorr = 9;
     } else {
-        incorr = 1;
+        if (attention_resp == current_stim.att_valid) {
+            incorr = 0;
+        } else {
+            incorr = 1;
+        }
+    }
+    if ($("#clarity_rate_id").hasClass("slider_hide_thumb") === true) {
+        clarity_resp = "-";
+    } else {
+        clarity_resp = $("#clarity_rate_id").val();
     }
     subj_data += [
-        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, attention_resp, incorr, $("#clarity_rate_id").val(), $('#cues_id').val().replace(/[\t\n\r]/gm,'; '), neat_date()
+        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, attention_resp, incorr, clarity_resp, $('#cues_id').val().replace(/[\t\n\r]/gm, '; '), neat_date()
     ].join("\t") + "\n";
 }
 
@@ -161,6 +172,10 @@ function trial_start() {
             conf_last: "-",
             conf_rt_last: 0,
         };
+        $('#yes_id').prop('checked', false);
+        $('#no_id').prop('checked', false);
+        $("#clarity_rate_id").addClass("slider_hide_thumb");
+        $('#attention_id').text(current_stim.att_ques);
         if (current_stim.mode === "video") {
             $('#text_container').hide();
             document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
