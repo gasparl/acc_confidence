@@ -48,41 +48,49 @@ var cat_intros = {
 function get_stims() {
     window.stimuli = {};
 
+    // TODO:
+    // current_stim.att_valid
+    // current_stim.att_ques
+
     stimuli.press = [];
-    press = ["vid_counter2", "vid_purple2"];
-    press = shuffle(press);
-    press.forEach(function(namee) {
+    press = shuffle(get_data("press"));
+    press.forEach(function(item) {
         stimuli.press.push({
-            name: namee,
-            mode: "video"
+            name: item[0],
+            mode: "video",
+            att_ques: item[1],
+            att_valid: item[2]
         });
     });
 
     stimuli.inmates = [];
-    inmates = ["vid_counter", "vid_purple"];
-    inmates = rchoice(inmates);
+    inmates = rchoice(get_data("inmates"));
     stimuli.inmates = [{
-        name: inmates,
-        mode: "video"
+        name: inmates[0],
+        mode: "video",
+        att_ques: inmates[1],
+        att_valid: inmates[2]
     }];
 
     stimuli.hotels = [];
-    hotels = ['opinion_neg_1_gu.txt', 'opinion_neg_10_gu.txt', 'opinion_neg_100_gu.txt', 'opinion_neg_101_gu.txt', 'opinion_neg_102_gu.txt', 'opinion_neg_103_gu.txt'];
-    hotels = shuffle(hotels).splice(0, 3);
-    hotels.forEach(function(namee) {
+    hotels = shuffle(get_data("hotels")).splice(0, 3);
+    hotels.forEach(function(item) {
         stimuli.hotels.push({
-            name: namee,
-            mode: "text"
+            name: item[0],
+            mode: "video",
+            att_ques: item[1],
+            att_valid: item[2]
         });
     });
 
     stimuli.weekends = [];
-    weekends = ['past_weekend_2400_gu.txt', 'past_weekend_2401_gu.txt', 'past_weekend_2402_gu.txt', 'past_weekend_2403_gu.txt', 'past_weekend_2404_gu.txt', 'past_weekend_2405_gu.txt'];
-    weekends = shuffle(weekends).splice(0, 3);
-    weekends.forEach(function(namee) {
+    weekends = shuffle(get_data("weekends")).splice(0, 3);
+    weekends.forEach(function(item) {
         stimuli.weekends.push({
-            name: namee,
-            mode: "text"
+            name: item[0],
+            mode: "video",
+            att_ques: item[1],
+            att_valid: item[2]
         });
     });
 }

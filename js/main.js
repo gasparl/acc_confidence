@@ -1,8 +1,6 @@
 var trial_num = 0;
 var trial_times = {};
-var subj_data = [
-    "subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "date_in_ms\n"
-].join("\t");
+var subj_data = ["subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "attention", "incorrect", "clarity", "cues", "date_in_ms\n"].join("\t");
 
 function store_start() {
     window.subj_id =
@@ -42,8 +40,14 @@ function store_start() {
 }
 
 function store_trial() {
+    attention_resp = $('input[name=attention_check]:checked').val();
+    if (attention_resp == current_stim.att_valid) {
+        incorr = 0;
+    } else {
+        incorr = 1;
+    }
     subj_data += [
-        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, neat_date()
+        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, attention_resp, incorr, $("#clarity_rate_id").val(), $('#cues_id').val().replace(/[\t\n\r]/gm,'; '), neat_date()
     ].join("\t") + "\n";
 }
 
