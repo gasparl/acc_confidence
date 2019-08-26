@@ -195,7 +195,8 @@ function trial_start() {
         categ_start();
     } else {
         $('#div_questions').hide();
-        $('#div_outro_rating').show();
+        end_task();
+        $('#div_outro_end').show();
     }
 }
 

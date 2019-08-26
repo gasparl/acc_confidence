@@ -79,7 +79,7 @@
             <option value="6">Master's degree (or above)</option>
         </select>
         <br>
-        <br>Your country of origin:
+        <br>Country of origin:
         <select id="countries" style="text-transform: capitalize;">
             <option value="">- choose one -</option>
         </select>
@@ -194,17 +194,8 @@
             <br>
         </div>
         <br>
-        <br>
         <button class="main_button" style="left: 0; transform: none;" onclick="change_div(this, '', validate_responses(), store_trial, trial_start );">OK</button>
         <br>
-    </div>
-
-    <div id="div_outro_rating" style="width: 70%;font-size:2.1vw;" class="intro">
-        Outro. Whatever else you might need before submission, e.g. a small questionnaire about how they liked the entire task, to what extent they managed to engage and focus, etc.
-        <br>
-        <br>
-        <br>
-        <button class="intro_button" onclick="change_div(this, '#div_outro_end', true, end_task );" style="font-size:2.5vw;">Submit</button>
     </div>
 
     <div id="div_outro_end" style="width: 70%;font-size:2.3vw;" class="intro">
