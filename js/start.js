@@ -42,15 +42,12 @@ var cat_intros = {
     press: "some press intro",
     inmates: "some inmate intro",
     hotels: "some hotel intro",
-    weekends: "some weekend intro"
+    weekends: "some weekend intro",
+    mock: "some mock intro"
 };
 
 function get_stims() {
     window.stimuli = {};
-
-    // TODO:
-    // current_stim.att_valid
-    // current_stim.att_ques
 
     stimuli.press = [];
     press = shuffle(get_data("press"));
@@ -77,7 +74,7 @@ function get_stims() {
     hotels.forEach(function(item) {
         stimuli.hotels.push({
             name: item[0],
-            mode: "video",
+            mode: "text",
             att_ques: item[1],
             att_valid: item[2]
         });
@@ -88,7 +85,7 @@ function get_stims() {
     weekends.forEach(function(item) {
         stimuli.weekends.push({
             name: item[0],
-            mode: "video",
+            mode: "text",
             att_ques: item[1],
             att_valid: item[2]
         });

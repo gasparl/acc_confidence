@@ -227,13 +227,13 @@ function sum(array_to_sum) {
 
 function select_cats() {
     weights = {
-        press: 0.2,
-        inmates: 1,
+        press: 0.7,
+        inmates: 0.4,
         hotels: 0.6,
-        weekends: 0.2,
-        mocks: 0
+        weekends: 0.8,
+        mock: 0
     };
-    if (Object.keys(cat_intros).sort().join(',') === Object.keys(weights).sort().join(',')) {
+    if (Object.keys(cat_intros).sort().join(',') !== Object.keys(weights).sort().join(',')) {
         console.log("cats mismatch:");
         console.log("Object.keys(cat_intros):", Object.keys(cat_intros));
         console.log("Object.keys(weights):", Object.keys(weights));
