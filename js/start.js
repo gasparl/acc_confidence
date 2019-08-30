@@ -43,7 +43,8 @@ var cat_intros = {
     inmates: "some inmate intro",
     hotels: "some hotel intro",
     weekends: "some weekend intro",
-    mock: "some mock intro"
+    mocks1: "some mock 1 intro",
+    mocks2: "some mock 2 intro"
 };
 
 function get_stims() {

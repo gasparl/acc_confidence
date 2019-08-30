@@ -226,51 +226,44 @@ function sum(array_to_sum) {
 }
 
 function select_cats() {
-    weights = {
-        press: 0.7,
-        inmates: 0.4,
-        hotels: 0.6,
-        weekends: 0.8,
-        mock: 0
+    var plus_div = 1.6;
+    var weights = {
+        press: -Math.log(Math.random()) / (1/8/plus_div),
+        inmates: -Math.log(Math.random()),
+        hotels: -Math.log(Math.random()) / (1/6/plus_div),
+        weekends: -Math.log(Math.random()) / (1/6/plus_div),
+        mocks1: -Math.log(Math.random()),
+        mocks2: -Math.log(Math.random())
     };
-    if (Object.keys(cat_intros).sort().join(',') !== Object.keys(weights).sort().join(',')) {
-        console.log("cats mismatch:");
-        console.log("Object.keys(cat_intros):", Object.keys(cat_intros));
-        console.log("Object.keys(weights):", Object.keys(weights));
-    }
     var final_cats = [];
-    for (var i = 0; i < 2; i++) {
-        var random_size = Math.random() * sum(Object.values(weights));
-        var scale = 0;
-        for (var catkey in weights) {
-            scale += weights[catkey];
-            if (random_size <= scale) {
-                final_cats.push(catkey);
-                delete weights[catkey];
-                break;
-            }
-        }
+    for (var i = 0; i < 3; i++) {
+        let key = Object.keys(weights).reduce((key, v) => weights[v] < weights[key] ? v : key);
+        final_cats.push(key);
+        delete weights[key];
     }
     return (final_cats);
 }
 
-function testx() {
+function testx(its = 1000, multi = 1) {
     var test = [];
-    for (var i = 0; i < 500; i++) {
+    for (var i = 0; i < its; i++) {
         var news = select_cats();
         test = test.concat(news);
         console.log(news.length);
     }
-    var counts = {};
+    window.counts = {};
     for (var i2 = 0; i2 < test.length; i2++) {
         var num = test[i2];
         counts[num] = counts[num] ? counts[num] + 1 : 1;
     }
+    Object.keys(counts).forEach(key => {
+        counts[key] = counts[key] * multi;
+    });
     console.log(counts);
     console.log(counts.weekends / counts.inmates);
-    console.log(counts.weekends / counts.mocks);
+    console.log(counts.weekends / counts.mocks1);
     console.log(counts.press / counts.inmates);
-    console.log(counts.press / counts.mocks);
+    console.log(counts.press / counts.mocks1);
     console.log(counts.hotels / counts.inmates);
-    console.log(counts.hotels / counts.mocks);
+    console.log(counts.hotels / counts.mocks1);
 }
