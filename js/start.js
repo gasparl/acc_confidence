@@ -29,7 +29,7 @@ function chrome_check() {
     if (browser_name != "Chrome") {
         console.log("Detected browser: " + browser_name + ". This application should be run in Google Chrome.");
         alert("Your browser was detected to be " + browser_name + "! This test was optimized for and should be run in Google Chrome. Please make sure you use the appropriate browser.");
-        $("#not_chrome_warn").html("<br><i>The test was designed for <b>Google Chrome</b>, but your browser was detected to be " + browser_name + ".<br><br>If you want to do this test, please use Google Chrome.</i><br><br>");
+        $("#not_chrome_warn").html("<br><i>The test was designed for <b>Google Chrome</b>, but your browser was detected to be " + browser_name + ".<br><br>If you want to do this test, please use Google Chrome. It is completely free to download and use: <a href='url'>https://www.google.com/chrome/</a>https://www.google.com/chrome/</i><br><br>");
         $("#not_chrome_warn").show();
     } else {
         $("#div_intro_general").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
@@ -57,38 +57,59 @@ function get_stims() {
             name: item[0],
             mode: "video",
             att_ques: item[1],
-            att_valid: item[2]
+            att_valid: item[2],
+            veracity: item[3]
         });
     });
 
-    stimuli.inmates = [];
     inmates = rchoice(get_data("inmates"));
     stimuli.inmates = [{
         name: inmates[0],
         mode: "video",
         att_ques: inmates[1],
-        att_valid: inmates[2]
+        att_valid: inmates[2],
+        veracity: inmates[3]
+    }];
+
+    mocks1 = rchoice(get_data("mocks1"));
+    stimuli.mocks1 = [{
+        name: mocks1[0],
+        mode: "video",
+        att_ques: mocks1[1],
+        att_valid: mocks1[2],
+        veracity: mocks1[3]
+    }];
+
+    mocks2 = rchoice(get_data("mocks2"));
+    stimuli.mocks2 = [{
+        name: mocks2[0],
+        mode: "video",
+        att_ques: mocks2[1],
+        att_valid: mocks2[2],
+        veracity: mocks2[3]
     }];
 
     stimuli.hotels = [];
-    hotels = shuffle(get_data("hotels")).splice(0, 3);
+    hotels = shuffle(get_data("hotels")).splice(0, 6);
     hotels.forEach(function(item) {
         stimuli.hotels.push({
             name: item[0],
             mode: "text",
             att_ques: item[1],
-            att_valid: item[2]
+            att_valid: item[2],
+            veracity: item[3]
         });
     });
 
     stimuli.weekends = [];
-    weekends = shuffle(get_data("weekends")).splice(0, 3);
+    weekends = shuffle(get_data("weekends")).splice(0, 6);
     weekends.forEach(function(item) {
         stimuli.weekends.push({
             name: item[0],
             mode: "text",
             att_ques: item[1],
-            att_valid: item[2]
+            att_valid: item[2],
+            veracity: item[3]
         });
     });
 }

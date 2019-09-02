@@ -194,11 +194,20 @@ function end_task() {
         ".txt";
     basic_times.finished = neat_date();
     var duration_full = Math.round((now() - basic_times.consent_now) / 600) / 100;
+    subj_data += "durs" + "\t" + Object.keys(categ_dur).join("/") + "\t" + Object.values(categ_dur).join("/") + "\n";
     subj_data += [dems, basic_times.loaded,
         basic_times.consented,
         basic_times.finished,
         duration_full
     ].join("/");
+    var acc_feed;
+    if (subj_det_acc.length > 0) {
+        var acc = Math.round(100 - mean(subj_det_acc) * 100);
+        acc_feed = "The overall accuracy of your judgments was " + acc + "%.";
+    } else {
+        acc_feed = "You made no judgments at all, so we cannot give accuracy feedback.";
+    }
+    $("#acc_feed_id").text(acc_feed);
     $.post(
             "php/store_finish.php", {
                 filename_post: f_name,
@@ -225,13 +234,18 @@ function sum(array_to_sum) {
     return sum;
 }
 
+function mean(array_to_avg) {
+    var mean = sum(array_to_avg) / array_to_avg.length;
+    return mean;
+}
+
 function select_cats() {
     var plus_div = 1.6;
     var weights = {
-        press: -Math.log(Math.random()) / (1/8/plus_div),
+        press: -Math.log(Math.random()) / (1 / 8 / plus_div),
         inmates: -Math.log(Math.random()),
-        hotels: -Math.log(Math.random()) / (1/6/plus_div),
-        weekends: -Math.log(Math.random()) / (1/6/plus_div),
+        hotels: -Math.log(Math.random()) / (1 / 6 / plus_div),
+        weekends: -Math.log(Math.random()) / (1 / 6 / plus_div),
         mocks1: -Math.log(Math.random()),
         mocks2: -Math.log(Math.random())
     };

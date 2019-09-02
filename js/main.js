@@ -1,6 +1,6 @@
 var trial_num = 0;
 var trial_times = {};
-var subj_data = ["subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "attention", "incorrect", "cues", "date_in_ms\n"].join("\t");
+var subj_data = ["subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "main_incorrect", "attention", "attention_incorrect", "cues", "date_in_ms\n"].join("\t");
 
 function store_start() {
     window.subj_id =
@@ -39,21 +39,34 @@ function store_start() {
         });
 }
 
+var subj_det_acc = [];
+
 function store_trial() {
     var incorr, attention_resp;
     attention_resp = $('input[name=attention_check]:checked').val();
     if (attention_resp == undefined) {
         attention_resp = "";
-        incorr = 9;
+        att_incorr = 9;
     } else {
         if (attention_resp == current_stim.att_valid) {
-            incorr = 0;
+            att_incorr = 0;
         } else {
-            incorr = 1;
+            att_incorr = 1;
         }
     }
+    if (responses.main_last != "-") {
+        if (responses.main_last == current_stim.veracity) {
+            main_incorr = 0;
+        } else {
+            main_incorr = 1;
+        }
+        subj_det_acc.push(main_incorr);
+    } else {
+        main_incorr = 9;
+    }
+
     subj_data += [
-        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, attention_resp, incorr, $('#cues_id').val().replace(/[\t\n\r]/gm, '; '), neat_date()
+        subj_id, trial_num, current_cat, current_stim.name, responses.main_first, responses.conf_first, responses.main_last, responses.conf_last, trial_times.stim_start, trial_times.stim_end, trial_times.stim_closed, responses.main_rt_first, responses.conf_rt_first, responses.main_rt_last, responses.conf_rt_last, main_incorr, attention_resp, att_incorr, $('#cues_id').val().replace(/[\t\n\r]/gm, ';; '), neat_date()
     ].join("\t") + "\n";
 }
 
@@ -112,10 +125,13 @@ function first_start() {
     }
 }
 
+var categ_dur = {};
+
 function categ_start() {
     window.current_cat = task_categories.shift();
     $('#cat_text_id').text(cat_intros[current_cat]);
     $('#div_cat_intro').show();
+    categ_dur[current_cat] = now();
 }
 
 function allow_pass() {
@@ -190,13 +206,16 @@ function trial_start() {
             window.load_error = 0;
             load_text();
         }
-    } else if (task_categories.length > 0) {
-        $('#div_questions').hide();
-        categ_start();
     } else {
-        $('#div_questions').hide();
-        end_task();
-        $('#div_outro_end').show();
+        categ_dur[current_cat] = Math.round((now() - categ_dur.current_cat) / 600) / 100;
+        if (task_categories.length > 0) {
+            $('#div_questions').hide();
+            categ_start();
+        } else {
+            $('#div_questions').hide();
+            end_task();
+            $('#div_outro_end').show();
+        }
     }
 }
 

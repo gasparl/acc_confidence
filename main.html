@@ -95,16 +95,23 @@
     <div id="div_instructions" class="main_instr">
         <span style="position: relative;left: 42%;transform: translateX(-50%)"><b>Task instructions</b></span>
         <br>
-        <br>Some instructions here...
-        <br>E.g.:
-        <br><i>
-            <br>First, you will need to watch a video carefully.
-            <br>Note that you cannot fast-forward the video. You can however rewatch parts that you already watched. Also, if you minimize the window or switch to another window, the video will pause.
-            <br>As soon as the video ends, you will be able to move to the next page and answer to some questions regarding the video. (INSERT HERE: what type of questions?)
-            <br>Importantly, please note that there will be some check questions for each video to make sure you watched and understood the content. These questions will be very simple, but if you fail them, the question will be invalidated and
-            replaced (hence the whole test will take longer).
-            <br></i>
-        <br> Click on <b>OK</b> if you understood. You can always check these instructions again during the task.
+        <br>This is a study about people’s ability to determine whether people are lying or telling the truth.
+        <br>
+        <br>
+        In this study, you will be presented with a series of videos to watch and passages of text to read. For each video or text, you will be asked:
+        <ul type="a">
+            <li>to determine whether the person speaking/writing is lying or telling the truth;</li>
+            <li>how confident you are in this judgment;</li>
+            <li>a very simple question about the content of the presented material, to make sure you were paying attention.</li>
+        </ul>
+        <br>
+        Less importantly, you will also be provided the opportunity to explain your judgment if you choose so.
+        <br>
+        <br>
+        The materials you will see come from a variety of sources, and we will provide you some background information about each one.
+        <br>
+        <br>
+        Go to the next page to begin viewing the materials. (You can always check these instructions again during the task.)
         <br>
         <br>
         <br>
@@ -149,26 +156,25 @@
 
     <div id="div_questions" style="padding:2%; width: 90%;text-align:center;" class="main_instr">
         <div class="main_quests">
-            <br><b>Truth or lie?</b>
+            <br><b>The person in the video was</b>
             <br>
             <br>
-            <input type="radio" id="truth_id" name="main_decision" value="0" class="form_ques" onchange="save_main();"><label for="truth_id">truth</label>
-            <input type="radio" id="lie_id" name="main_decision" value="1" class="form_ques" onchange="save_main();"><label for="lie_id">lie</label>
+            <input type="radio" id="truth_id" name="main_decision" value="'t'" class="form_ques" onchange="save_main();"><label for="truth_id">telling the truth</label>
+            <input type="radio" id="lie_id" name="main_decision" value="'d'" class="form_ques" onchange="save_main();"><label for="lie_id">lying</label>
             <br>
             <br>
             <br>
-            <br><b>How confident are you in your decision?</b>
+            <br><b>How confident are you in this judgment?</b>
             <br>
             <br>
             <div class="slidecontainer">
                 <input type="range" min="1" max="100" value="50" class="slider form_ques" id="conf_rate_id" onchange="save_conf()">
                 <div class="sliderticks">
-                    <p>No clue</p>
-                    <p>Minimal clue</p>
-                    <p>Some clue</p>
-                    <p>Fairly sure</p>
-                    <p>Pretty sure</p>
-                    <p>Total certainty</p>
+                    <p>Not at all confident</p>
+                    <p>Slightly confident</p>
+                    <p>Somewhat confident</p>
+                    <p>Very confident</p>
+                    <p>Totally confident</p>
                 </div>
             </div>
             <br>
@@ -176,8 +182,8 @@
             <br><b>Attention check: <span id="attention_id"></span></b>
             <br>
             <br>
-            <input type="radio" id="yes_id" name="attention_check" value="1" class="form_ques" onchange="save_main();"><label for="yes_id">Yes</label>
-            <input type="radio" id="no_id" name="attention_check" value="0" class="form_ques" onchange="save_main();"><label for="no_id">No</label>
+            <input type="radio" id="yes_id" name="attention_check" value="'TRUE'" class="form_ques" onchange="save_main();"><label for="yes_id">Yes</label>
+            <input type="radio" id="no_id" name="attention_check" value="'FALSE'" class="form_ques" onchange="save_main();"><label for="no_id">No</label>
             <br>
             <br>
         </div>
@@ -202,6 +208,9 @@
         <b>End of the experiment</b>
         <br>
         <br>Thank you for your participation!
+        <br>
+        <br>
+        <span id="acc_feed_id"></span>
         <br>
         <br> Info about this test:
         <br> ..................
