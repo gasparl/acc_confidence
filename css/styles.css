@@ -283,3 +283,7 @@ input[type=text] {
     line-height: 5.8vw;
     margin: 0 0 5.0vw 0;
 }
+
+li {
+    margin: 1vw 0;
+}

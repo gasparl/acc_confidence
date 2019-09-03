@@ -91,29 +91,41 @@ function save_conf() {
     responses.conf_rt_last = rt;
 }
 
+function timeupd() {
+    var video = document.getElementById('vid_id');
+    if (!video.seeking) {
+        tracked_time = video.currentTime;
+    }
+    if (!document.hasFocus()) {
+        video.pause();
+    }
+}
+
+function seekn() {
+    var video = document.getElementById('vid_id');
+    var delta = video.currentTime - tracked_time;
+    if (Math.abs(delta) > 0.01) {
+        //play back from where the user started seeking after rewind or without rewind
+        video.currentTime = tracked_time;
+    }
+}
+
 // video settings
 function vid_listen() {
     var video = document.getElementById('vid_id');
-    video.addEventListener('timeupdate', function() {
-        if (!video.seeking) {
-            tracked_time = video.currentTime;
-        }
-        if (!document.hasFocus()) {
-            video.pause();
-        }
-    });
+    video.addEventListener('timeupdate', timeupd);
     // prevent user from seeking
-    video.addEventListener('seeking', function() {
-        var delta = video.currentTime - tracked_time;
-        if (Math.abs(delta) > 0.01) {
-            //play back from where the user started seeking after rewind or without rewind
-            video.currentTime = tracked_time;
-        }
-    });
+    video.addEventListener('seeking', seekn);
     video.addEventListener("ended", function() {
         $('#watched_id').css('visibility', 'visible');
         trial_times.stim_end = now();
     });
+}
+
+function stopl() {
+    var video = document.getElementById('vid_id');
+    video.removeEventListener('timeupdate', timeupd);
+    video.removeEventListener('seeking', seekn);
 }
 
 function first_start() {

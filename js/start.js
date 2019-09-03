@@ -30,7 +30,8 @@ function chrome_check() {
         console.log("Detected browser: " + browser_name + ". This application should be run in Google Chrome.");
         alert("Your browser was detected to be " + browser_name + "! This test was optimized for and should be run in Google Chrome. Please make sure you use the appropriate browser.");
         $("#not_chrome_warn").html("<br><i>The test was designed for <b>Google Chrome</b>, but your browser was detected to be " + browser_name + ".<br><br>If you want to do this test, please use Google Chrome. It is completely free to download and use: <a href='url'>https://www.google.com/chrome/</a>https://www.google.com/chrome/</i><br><br>");
-        $("#not_chrome_warn").show();
+        //$("#not_chrome_warn").show();
+        $("#div_intro_general").show();
     } else {
         $("#div_intro_general").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
     }
