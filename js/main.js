@@ -126,6 +126,7 @@ function stopl() {
     var video = document.getElementById('vid_id');
     video.removeEventListener('timeupdate', timeupd);
     video.removeEventListener('seeking', seekn);
+    text_time = 1;
 }
 
 function first_start() {
@@ -167,7 +168,7 @@ function load_text() {
                 trial_times.stim_start = now();
                 setTimeout(function() {
                     allow_move = true;
-                }, 2000);
+                }, text_time);
             }
         });
 }
@@ -182,8 +183,9 @@ function trial_start() {
         };
         $('#truth_id').prop('checked', false);
         $('#lie_id').prop('checked', false);
+        $("#conf_rate_id").val(51);
         $("#conf_rate_id").addClass("slider_hide_thumb");
-        once_asked = false;
+        window.once_asked = false;
         trial_num++;
         window.responses = {
             main_first: "-",
@@ -237,4 +239,5 @@ function vid_pause() {
 
 function vid_close_time() {
     trial_times.stim_closed = now();
+    document.getElementById("vid_id").src = "";
 }

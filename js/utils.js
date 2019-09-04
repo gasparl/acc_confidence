@@ -101,9 +101,10 @@ function validate_form(form_class) {
 function validate_responses() {
     var is_valid = true;
     if (once_asked === false) {
-        if (responses.conf_first === "-" | responses.main_first === "-") {
+        if (responses.conf_first === "-" || responses.main_first === "-" ||
+            $("#conf_rate_id").hasClass("slider_hide_thumb") === true) {
             is_valid = false;
-            alert("Note: you did not answer all questions. Please reconsider.");
+            alert("You did not answer all three main questions. Please consider responding to them before moving on.");
         }
         window.once_asked = true;
     }

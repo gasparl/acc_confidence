@@ -3,6 +3,7 @@ var end_url = "https://www.mturk.com/";
 var subj_id;
 var basic_times = {};
 var bg_color = "#031116";
+var text_time = 10000; // min duration, in ms, for which to consider each text
 
 $(document).ready(function() {
     basic_times.loaded = neat_date();

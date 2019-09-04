@@ -264,6 +264,30 @@ input[type=text] {
 
 .slider_hide_thumb::-webkit-slider-thumb {
     width: 0;
+    visibility: hidden;
+}
+
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.8vw;
+    height: 3.8vw;
+    background: #000000;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0.8vw;
+    height: 3.8vw;
+    background: #000000;
+    cursor: pointer;
+}
+
+.slider_hide_thumb::-moz-range-thumb {
+    width: 0;
+    visibility: hidden;
 }
 
 .sliderticks {
