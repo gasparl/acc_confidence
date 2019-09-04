@@ -4,7 +4,7 @@ function get_data(cat) {
         ["2001", "The speaker pleads for the missing person to come home. ", "TRUE", "d"],
         ["2002", "The speaker pleads for the missing person to come home. ", "FALSE", "d"],
         ["2003", "The speaker described the traits of her boyfriend.", "TRUE", "d"],
-        ["2004", "The speaker described various traits of his wife.", "FALSE", "d"],
+        ["2004", "The speaker gave a detailed description of his wife.", "FALSE", "d"],
         ["2005", "The speaker held up a photograph of two children.", "TRUE", "d"],
         ["2006", "The speaker held up a photograph of the missing person.", "FALSE", "t"],
         ["2007", "The woman abruptly left the stage.", "FALSE", "t"],
@@ -91,7 +91,8 @@ function get_data(cat) {
         ["past_weekend_2539_gu", "The narrator went to the birthday party of a friend.", "FALSE", "t"]
     ];
     base_data.mocks1 = [
-        ["4001", "The interviewee mentioned stapling papers.", "TRUE", "t"]
+        ["4002", "The interviewee mentioned stapling papers.", "TRUE", "d"]
+
     ];
     base_data.mocks2 = [
         ["6", "The interviewee mentioned having been in the storage room.", "TRUE", "t"]

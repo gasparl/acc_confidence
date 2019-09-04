@@ -40,12 +40,12 @@ function chrome_check() {
 // STIMULI lists
 
 var cat_intros = {
-    press: "some press intro",
-    inmates: "some inmate intro",
-    hotels: "some hotel intro",
-    weekends: "some weekend intro",
-    mocks1: "some mock 1 intro",
-    mocks2: "some mock 2 intro"
+    press: "You will now see eight very short recordings, one by one, from real life press conferences with pleas to the public in a missing person or murder case. The eight individuals speaking are relatives of the victims. Police investigations, however, have shown that some of these eight persons were lying during these press conferences, and have, in fact, been later found guilty of killing their own relatives.",
+    inmates: "You will now be presented with a confession to a crime, made by a prison inmate. This is either a true confession, in which case the individual was found guilty of the crime to which he confesses in the video; or a false confession, in which case the individual is innocent of the crime and telling a false story.",
+    hotels: "You will now see written hotel reviews one by one. The person who wrote the given review was either actually there and provided a truthful review or was never actually staying at said hotel, thus providing a false review.",
+    weekends: "You will now see descriptions of various past weekend activities one by one. The person who wrote the description either actually spent the weekend as described, thus telling the truth, or made up the entire activity description, thus lying.",
+    mocks1: "You will now see an interview between an interrogator and a suspect in a mock theft that some of the participants enacted as part of the experiment at the university. The interviewee is asked for his or her whereabouts in the last 30 minutes and is either truthful in their statements or lying to the investigator.",
+    mocks2: "You will now see an interview between an interrogator and a suspect in a mock terrorist act that some of the participants enacted as part of the experiment at the university. The interviewee is asked for his or her whereabouts in the last 30-40 minutes and is either truthful in their statements or lying to the investigator."
 };
 
 function get_stims() {
