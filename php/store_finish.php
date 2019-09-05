@@ -15,11 +15,12 @@ $file_name = ('../results/' . $_POST['filename_post']);
 $subject_results = ($_POST['results_post'] . "/" . $subj_ip . $_POST['date_post']);
 
 file_put_contents($file_name, $subject_results, FILE_APPEND);
-
-if (strlen($subject_results) > 500) {
-    echo 'demoPassword';
+if (strlen($_POST['wid_post']) < 4) {
+    echo '(No valid MTurk ID)';
+} else if (strlen($subject_results) > 400) {
+    echo 'demoValidPassword';
 } else {
-    echo '_';
+    echo '(No valid data)';
 }
 
 ?>

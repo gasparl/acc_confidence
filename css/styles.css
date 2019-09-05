@@ -161,6 +161,10 @@ input {
     position: absolute;
     min-width: 96%;
     margin: 1% 2% 1% 1%;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #vid_container {

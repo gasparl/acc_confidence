@@ -28,9 +28,7 @@
         <br>
         <br>For more efficient performance, please close the programs (and browser tabs or windows) that you are not currently using.
         <br>
-        <br>Be advised that using the "refresh" or "back" buttons on the browser during the experiment will send you back on this starting page, and all your progress will be lost.
-        <br>
-        <br>After a valid participation, you will receive a completion password at the end of the experiment.
+        <br>Be advised that using the "refresh" or "back" buttons on the browser during the experiment will send you back to this starting page, and all your progress will be lost.
         <br>
         <br>
         <br>
@@ -50,16 +48,16 @@
                 material).</b> <span id="pay_info"></span>
             <br>
             <br>
-            You may freely decide to discontinue the experiment at any time without consequences. In that case, none of you test data will be retained.
+            You may freely decide to discontinue the experiment at any time without consequences. In that case, none of your test data will be retained.
             <br>
             <br> Your personal and demographic data will be treated in full confidentiality. The experiment data (truth/lie judgments, etc.) may be shared only completely anonymously in the scientific community.
             <br>
             <br>This experimental program has been thoroughly tested and proven stable many times, but we do not take responsibility for potential unexpected technical issues.
             <br>
             <br> The study is organized at the Department of Psychology of the University of Gothenburg, in cooperation with the Department of Basic Psychological Research and Research Methods at the University of Vienna. For more information about
-            the study in general, contact <a href="https://psy.gu.se/english/staff?languageId=100001&userId=xlukti" target="_blank">Timothy J. Luke</a>. Regarding technical issues with this website, contact <a href="https://ufind.univie.ac.at/de/person.html?id=103013" target="_blank">Gaspar
+            the study in general, contact <a href="https://psy.gu.se/english/staff?languageId=100001&userId=xlukti" target="_blank">Timothy J. Luke</a>. Regarding technical issues with this website, contact <a href="https://ufind.univie.ac.at/de/person.html?id=103013"
+                target="_blank">Gaspar
                 Lukacs</a>.
-            .
             <br>
         </div>
         <button style="left:20%; top: 90%" class="intro_button" onclick="change_div( this, '#div_intro_dems', true, consent_agreed)">AGREED</button>
@@ -67,7 +65,7 @@
 
     <div id="div_intro_dems" style="text-align:left;width: 80%;padding-top: 0%;" class="intro">
         <br>
-            Please give us the following demographic information about yourself.
+        Please give us the following demographic information about yourself.
         <br><br>
         <br> Age:
         <input type="text" onkeypress='validate(event)' id="age" maxlength="2" size="4"> &nbsp;&nbsp;&nbsp;&nbsp;Gender:
@@ -139,7 +137,7 @@
 
     <div id="div_stim">
         <div id="vid_container" style="text-align: center;">
-            <p>Please watch the full video carefully.</p>
+            <p>Please watch the full video attentively.</p>
             <br>
             <video id="vid_id" style="max-width:90%;max-height:480px;" controls center>
                 <source src="" type="video/mp4">
@@ -147,7 +145,7 @@
         </div>
 
         <div id="text_container">
-            <p>Please read the text carefully.</p>
+            <p>Please read the text attentively.</p>
             <br>
             <p id="text_id"></p>
         </div>
@@ -186,7 +184,10 @@
             </div>
             <br>
             <br>
-            <br><b>Attention check: <span id="attention_id"></span></b>
+            <br> Attention check:<br>
+            (Please indicate whether the following statement corresponds to the content of the
+            <span id="att_ques_id"></span>.)
+            <br><br><b> <span id="attention_id"></span></b>
             <br>
             <br>
             <input type="radio" id="yes_id" name="attention_check" value="TRUE"><label for="yes_id">Yes</label>
@@ -198,6 +199,7 @@
         <div class="optional">
             <br>
             Any specific reasons for your truth/lie decision? You are welcome to note them below.
+            <br> Here you can also note if the content of the material was unclear (e.g., bad video quality, etc.).
             <br>
             <br>
             <textarea id="cues_id" style="width:80%;font-size:1.5vw;" rows="2" maxlength="300"></textarea>
@@ -219,14 +221,17 @@
         <br>
         <br>People usually perform very badly at deciding whether someone is lying or not, typically achieving chance level (50%) classification on average.
         <br>
-        <br>For more information about the study in general, contact <a href="https://psy.gu.se/english/staff?languageId=100001&userId=xlukti" target="_blank">Timothy J. Luke</a>. Regarding technical issues with this website, contact <a href="https://ufind.univie.ac.at/de/person.html?id=103013" target="_blank">Gaspar
+        <br>For more information about the study in general, contact <a href="https://psy.gu.se/english/staff?languageId=100001&userId=xlukti" target="_blank">Timothy J. Luke</a>. Regarding technical issues with this website, contact <a href="https://ufind.univie.ac.at/de/person.html?id=103013"
+            target="_blank">Gaspar
             Lukacs</a>.
         <br>
-        <br>
-        <b>
-            Your completion password: <span style="color:red" id="passw_display"></span>
-        </b>
-        <br>
+        <span id="passw_container">
+            <br>
+            <b>
+                Your completion password: <span style="color:red" id="passw_display"></span>
+            </b>
+            <br>
+        </span>
         <br>
         <button class="intro_button" onclick="window.location = end_url;">Exit</button>
     </div>

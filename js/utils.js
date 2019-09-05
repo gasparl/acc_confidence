@@ -102,7 +102,7 @@ function validate_responses() {
     var is_valid = true;
     if (once_asked === false) {
         if (responses.conf_first === "-" || responses.main_first === "-" ||
-            $("#conf_rate_id").hasClass("slider_hide_thumb") === true) {
+            $('input[name=attention_check]:checked').val() === undefined) {
             is_valid = false;
             alert("You did not answer all three main questions. Please consider responding to them before moving on.");
         }
@@ -213,7 +213,8 @@ function end_task() {
             "php/store_finish.php", {
                 filename_post: f_name,
                 results_post: subj_data,
-                date_post: "\ndate\t" + Date()
+                date_post: "\ndate\t" + Date(),
+                wid_post: subj_id.replace("_noworkerid", "")
             },
             function(resp) {
                 $("#passw_display").text(resp);
