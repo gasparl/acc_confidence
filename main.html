@@ -21,9 +21,12 @@
 
     <div id="div_intro_general" class="intro">
         <h2 style="text-align:center;"><b>Welcome to this online test!</b></h2>
-        <br>Please make sure you have your browser in fullscreen mode (press F11 for Windows, or Control+Cmd+F for Mac). This test must be completed on <b>Google Chrome</b>. Otherwise it may not work correctly.
         <br>
-        <br> For more efficient performance, please close the programs (and browser tabs or windows) that you are not currently using.
+        <span id="workerid_info"></span>
+        <br>
+        <br>Please make sure you have your browser in fullscreen mode (press F11 for Windows, or Control+Cmd+F for Mac).
+        <br>
+        <br>For more efficient performance, please close the programs (and browser tabs or windows) that you are not currently using.
         <br>
         <br>Be advised that using the "refresh" or "back" buttons on the browser during the experiment will send you back on this starting page, and all your progress will be lost.
         <br>
@@ -35,7 +38,7 @@
     </div>
 
 
-    <div id="not_chrome_warn" class="intro"></div>
+
 
     <div id="div_intro_consent" style="height: 92%" class="intro">
         Below, you can read the informed consent. If you decide that you want to take part in the experiment, click on AGREED to confirm that you understood and agreed to our conditions.
@@ -64,10 +67,8 @@
 
     <div id="div_intro_dems" style="text-align:left;width: 80%;padding-top: 0%;" class="intro">
         <br>
-        <b>Please enter here your MTurk Worker ID: <input type="text" id="mturk_id" class="form_dems" maxlength="16" size="9">
-            <br><br>
-            Please give the following demographic information about yourself.</b>
-        <br>
+            Please give us the following demographic information about yourself.
+        <br><br>
         <br> Age:
         <input type="text" onkeypress='validate(event)' id="age" maxlength="2" size="4"> &nbsp;&nbsp;&nbsp;&nbsp;Gender:
         <select id="gender">
@@ -94,7 +95,7 @@
             <option value="">- choose one -</option>
         </select>
         <br>
-        <br>
+        <br><br>
         <button class="main_button" onclick="change_div( this, '#div_instructions', validate_form('.form_dems'), store_start )">Next</button>
     </div>
 

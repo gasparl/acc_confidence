@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var experiment_title = "gu_confidence_rating";
 var end_url = "https://www.mturk.com/";
 var subj_id;
@@ -7,7 +8,7 @@ var text_time = 10000; // min duration, in ms, for which to consider each text
 
 $(document).ready(function() {
     basic_times.loaded = neat_date();
-    chrome_check();
+    workerid_check();
     detect_transl();
     vid_listen();
     get_stims();
@@ -25,15 +26,15 @@ $(document).ready(function() {
     $("#mothertongue").append(lang_choices);
 });
 
-function chrome_check() {
-    var browser_name = $.browser.name;
-    if (browser_name != "Chrome") {
-        console.log("Detected browser: " + browser_name + ". This application should be run in Google Chrome.");
-        alert("Your browser was detected to be " + browser_name + "! This test was optimized for and should be run in Google Chrome. Please make sure you use the appropriate browser.");
-        $("#not_chrome_warn").html("<br><i>The test was designed for <b>Google Chrome</b>, but your browser was detected to be " + browser_name + ".<br><br>If you want to do this test, please use Google Chrome. It is completely free to download and use: <a href='url'>https://www.google.com/chrome/</a>https://www.google.com/chrome/</i><br><br>");
-        //$("#not_chrome_warn").show();
+function workerid_check() {
+    window.params = new URLSearchParams(location.search);
+    window.workerid = params.get('workerId');
+    if (workerid == null) {
+        $("#workerid_info").html("Your <b>MTurk Worker ID is missing!</b> If you are trying to do this task as a job via MTurk, you should open the proper link provided. Otherwise, you are allowed to continue but you will not receive any monetary reward.");
+        window.workerid = "noworkerid";
         $("#div_intro_general").show();
     } else {
+        $("#workerid_info").html("Your MTurk Worker ID was identified as <b>" + window.workerid + "</b>.");
         $("#div_intro_general").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
     }
 }

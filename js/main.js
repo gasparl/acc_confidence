@@ -1,6 +1,8 @@
 var trial_num = 0;
 var trial_times = {};
-var subj_data = ["subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed", "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "main_incorrect", "attention", "attention_incorrect", "cues", "date_in_ms\n"].join("\t");
+var subj_data = ["subject_id", "trial_number", "category", "stimulus", "decision_first", "confidence_first", "decision_last", "confidence_last", "stim_start", "stim_end", "stim_closed",
+    "decision_time_first", "confidence_time_first", "decision_time_last", "confidence_time_last", "main_incorrect", "attention", "attention_incorrect", "cues", "date_in_ms\n"
+].join("\t");
 
 function store_start() {
     window.subj_id =
@@ -8,7 +10,7 @@ function store_start() {
         rchoice("AEIOU") +
         rchoice("CDFGHJKLMNPQRSTVWXYZ") +
         "_" +
-        $("#mturk_id").val();
+        workerid;
     var start_data = [subj_id,
         $("#gender").val(),
         $("#age").val(),
@@ -16,9 +18,12 @@ function store_start() {
         $("#countries").val(),
         $("#mothertongue").val(),
         $.browser.name,
-        $.browser.version
+        $.browser.version,
+        params.get('hitId'),
+        params.get('assignmentId')
     ];
-    window.dems = "dems\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "load", "consent", "finish", "duration", "ip"].join("/") + "\t" + start_data.join("/");
+    window.dems = "dems\t" + ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "hitId", "assignmentId", "load", "consent", "finish", "duration", "ip"].join("/") +
+        "\t" + start_data.join("/");
     var to_write = start_data.join("\t");
     var headers = ["id", "gender", "age", "edu", "country", "lg", "browser", "bversion", "ip\n"].join("\t");
     $.post(
