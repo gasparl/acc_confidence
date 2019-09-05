@@ -30,11 +30,13 @@ function workerid_check() {
     window.params = new URLSearchParams(location.search);
     window.workerid = params.get('workerId');
     if (workerid == null) {
-        $("#workerid_info").html("Your <b>MTurk Worker ID is missing!</b> If you are trying to do this task as a job via MTurk, you should open the proper link provided. Otherwise, you are allowed to continue but you will not receive any monetary reward.");
+        $("#workerid_info").html("Your <b>MTurk Worker ID is missing</b>! If you are trying to do this test as a job via MTurk, you should open the proper link provided. Otherwise, you are allowed to continue but you will not receive any monetary reward.");
+        $("#pay_info").html("<b>Since we could not detect any MTurk Worker ID, this test is assumed to be a voluntary trial testing, and no compensation will be provided.</b>");
         window.workerid = "noworkerid";
         $("#div_intro_general").show();
     } else {
         $("#workerid_info").html("Your MTurk Worker ID was identified as <b>" + window.workerid + "</b>.");
+        $("#pay_info").html("<b>A valid participation via MTurk will be rewarded with $2.00 gross.</b> Repeated participation is not allowed.");
         $("#div_intro_general").show(); //div_intro_general div_instructions // div_intro_consent div_outro_end div_end_screen
     }
 }

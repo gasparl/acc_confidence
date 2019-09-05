@@ -91,8 +91,7 @@ function get_data(cat) {
         ["past_weekend_2539_gu", "The narrator went to the birthday party of a friend.", "FALSE", "t"]
     ];
     base_data.mocks1 = [
-        ["4002", "The interviewee mentioned stapling papers.", "TRUE", "d"]
-
+        ["4055", "The interviewee mentioned stapling papers.", "TRUE", "d"]
     ];
     base_data.mocks2 = [
         ["91", "The interviewee mentioned having helped the art professor to prepare for his class.", "FALSE", "d"]
