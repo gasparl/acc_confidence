@@ -221,7 +221,7 @@ function trial_start() {
             load_text();
         }
     } else {
-        categ_dur[current_cat] = Math.round((now() - categ_dur.current_cat) / 600) / 100;
+        categ_dur[current_cat] = Math.round((now() - categ_dur[current_cat]) / 600) / 100;
         if (task_categories.length > 0) {
             $('#div_questions').hide();
             categ_start();
