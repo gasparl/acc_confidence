@@ -95,7 +95,7 @@ function get_data(cat) {
 
     ];
     base_data.mocks2 = [
-        ["6", "The interviewee mentioned having been in the storage room.", "TRUE", "t"]
+        ["91", "The interviewee mentioned having helped the art professor to prepare for his class.", "FALSE", "d"]
     ];
     return (base_data[cat]);
 }
