@@ -81,6 +81,7 @@ function change_div(
         onchange_function2();
         var toHide = "#" + current.parentNode.id;
         $(toHide).hide();
+        window.scrollTo(0, 0);
         $(next).show();
     }
 }

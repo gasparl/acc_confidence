@@ -208,6 +208,7 @@ function trial_start() {
         $('#cues_id').val("");
         if (current_stim.mode === "video") {
             $('#att_ques_id').text("video you have just seen");
+            $('#mode_id').text("in the video");
             $('#text_container').hide();
             document.getElementById("vid_id").src = "./stims/" + current_cat + "/" + current_stim.name + ".mp4";
             $('#vid_container').show();
@@ -217,9 +218,11 @@ function trial_start() {
             });
             window.tracked_time = 0;
             window.allow_move = true;
+            window.scrollTo(0, 0);
             $('#div_stim').show();
         } else {
             $('#att_ques_id').text("text you have just read");
+            $('#mode_id').text("who wrote the text");
             document.getElementById("vid_id").src = "";
             $('#vid_container').hide();
             $('#text_container').show();
